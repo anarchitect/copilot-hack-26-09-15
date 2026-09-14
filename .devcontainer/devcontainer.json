@@ -1,5 +1,5 @@
 {
-  "name": "Next.js Photo Gallery - Intermediate Copilot",
+  "name": "Next.js Photo Gallery - GitHub Copilot Training",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
   "hostRequirements": {
     "cpus": 4
