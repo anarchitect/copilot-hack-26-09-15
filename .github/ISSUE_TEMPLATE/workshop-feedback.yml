@@ -1,0 +1,63 @@
+name: Workshop feedback
+description: Tell us how the hackathon exercises went — what worked, what broke, what was unclear.
+title: "[Feedback] "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. Everything below is optional except the feedback itself — partial reports are still useful.
+
+  - type: dropdown
+    id: exercise
+    attributes:
+      label: Which exercise?
+      description: Pick the one this feedback is about.
+      options:
+        - Features Demo
+        - Engineering Practices
+        - Customize Copilot: Custom Instructions
+        - Customize Copilot: Custom Agent
+        - Customize Copilot: Custom Skill
+        - Hooks
+        - Stacked Pull Requests
+        - Cloud Agent
+        - Copilot Spaces
+        - Setup / getting started
+        - The workshop overall
+        - Something else
+    validations:
+      required: false
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of feedback is this?
+      options:
+        - Something did not work
+        - Instructions were unclear or wrong
+        - Suggestion for improvement
+        - This worked well
+        - Question
+    validations:
+      required: false
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your feedback
+      description: What happened, and what did you expect instead? If a step failed, paste the command and the error.
+      placeholder: |
+        On Step 2 of the Stacked Pull Requests exercise, `gh stack add` returned ...
+        I expected ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Only if relevant to a failure. `gh --version`, OS, and whether you used Codespaces, a dev container, or a local clone.
+      render: text
+    validations:
+      required: false
