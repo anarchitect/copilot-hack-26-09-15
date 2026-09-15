@@ -373,7 +373,7 @@ export const GUIDES = [
     {
         id: "customize",
         title: "Customize Copilot Demo",
-        source: "demos/customize-copilot-option-2.md",
+        source: "demos/README.md",
         estimate: "35-50 min",
         goal:
             "Prove that instructions, agents, skills and hooks each change output in a measurable way - by running the same prompt with and without each customization.",
@@ -507,10 +507,10 @@ export const GUIDES = [
                         body:
                             "You are on Windows, so use the PowerShell script (PowerShell 7+). The `chmod +x` step and the `.sh` variant in the demo doc apply to macOS/Linux shells only - on Windows there is nothing to make executable.",
                         commands: [
-                            "pwsh -File .github/hooks/fix-broken-links/link-fix.ps1 ./demos/customize-copilot-option-2.md",
+                            "pwsh -File .github/hooks/fix-broken-links/link-fix.ps1 ./demos/hooks-option-2.md",
                         ],
                         check:
-                            "Verified output: it reports `Checking 9 link(s)`, flags `BROKEN (404) https://github.com/github/awesome-copilot/this-page-does-not-exist-404`, and adds an SEO note about the non-descriptive anchor text `read more`. A transient `ERR` for another URL is a connectivity failure; retry it before calling that link broken.",
+                            "Expected output: it flags `BROKEN (404) https://github.com/github/awesome-copilot/this-page-does-not-exist-404` and adds an SEO note about the non-descriptive anchor text `read more`. A transient `ERR` for another URL is a connectivity failure; retry it before calling that link broken.",
                         why:
                             "That 404 anchor is planted in the doc specifically so the hook has something to find. The SEO note is a second, separate finding - the hook flags weak anchor text even on links that resolve.",
                     },
@@ -519,7 +519,7 @@ export const GUIDES = [
                         title: "Know what the interactive prompt will do before you answer it",
                         body:
                             "Passing a file path puts the script in fix mode, not report mode. In a real terminal it will offer `r` replace / `d` remove link, keep text / `c` custom URL / `s` skip. Two things to expect: building the `r` suggestions shells out to the `copilot` CLI with a **60 second timeout per broken link**, so it can sit there looking hung; and `r`, `d` or `c` **rewrite the markdown file in place**. Only `s` leaves the file untouched. (Piping the script's output, as in a non-interactive shell, makes it print `(no terminal - reporting only)` and change nothing.)",
-                        check: "You can predict, before pressing a key, whether your choice edits `demos/customize-copilot-option-2.md`.",
+                        check: "You can predict, before pressing a key, whether your choice edits `demos/hooks-option-2.md`.",
                         why: "A link-fixing hook run unattended will happily rewrite a link that was deliberately broken for the demo.",
                     },
                     {
@@ -527,7 +527,7 @@ export const GUIDES = [
                         title: "Decide per finding, then restore the demo doc",
                         body:
                             "Choose remove, replace or skip for each broken link. For this demo `s` (skip) is the honest answer - the link is meant to stay broken for the next person. If you did let it rewrite the file, restore it.",
-                        commands: ["git diff --stat demos/customize-copilot-option-2.md", "git checkout -- demos/customize-copilot-option-2.md"],
+                        commands: ["git diff --stat demos/hooks-option-2.md", "git checkout -- demos/hooks-option-2.md"],
                         check: "`git diff` on the demo doc is empty, so the challenge still works for the next run.",
                         why: "An explicit decision per link beats accepting a bulk rewrite - and leaving the planted 404 intact keeps the exercise repeatable.",
                     },
