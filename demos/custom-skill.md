@@ -1,6 +1,6 @@
 # Exercise 3: Custom Skill
 
-Part of the Customize Copilot Demo (Option 2). Complete this exercise independently or follow the [full sequence](README.md#3-customize-copilot-demo-option-2).
+Part of the Customize Copilot Demo. Complete this exercise independently or follow the [full sequence](README.md#3-customize-copilot-demo).
 
 **Setup:** Open this repository in your editor and start a fresh Copilot Chat with access to repository files. Keep unrelated local changes separate.
 
@@ -50,4 +50,4 @@ Then provide a "test maintenance checklist" for future UI changes.
 
 1. [ ] Completed the Custom Skill exercise with a repeatable trigger workflow
 
-[Optional: Hooks](hooks-option-2.md) · [Choose another exercise](README.md#3-customize-copilot-demo-option-2)
+[Optional: Hooks](hooks.md) · [Choose another exercise](README.md#3-customize-copilot-demo)

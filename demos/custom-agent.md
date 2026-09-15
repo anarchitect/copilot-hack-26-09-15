@@ -1,6 +1,6 @@
 # Exercise 2: Custom Agent
 
-Part of the Customize Copilot Demo (Option 2). Complete this exercise independently or follow the [full sequence](README.md#3-customize-copilot-demo-option-2).
+Part of the Customize Copilot Demo. Complete this exercise independently or follow the [full sequence](README.md#3-customize-copilot-demo).
 
 **Setup:** Open this repository in your editor and start a fresh Copilot Chat with access to repository files. Keep unrelated local changes separate.
 
@@ -40,4 +40,4 @@ Include architecture decisions, guardrails, and a test matrix.
 
 1. [ ] Completed the Custom Agent exercise and compared mode behavior
 
-[Next: Custom Skill](custom-skill-option-2.md) · [Choose another exercise](README.md#3-customize-copilot-demo-option-2)
+[Next: Custom Skill](custom-skill.md) · [Choose another exercise](README.md#3-customize-copilot-demo)

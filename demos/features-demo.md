@@ -2,151 +2,118 @@
 
 Welcome to this repository! You're probably wondering what it is and how it works. We will be working with this repository for the duration of this training, so it's important to find out what it's doing now!
 
-Let's start off by learning the different modes.
-
 ## What You'll Learn
 By the end of this demo, you will:
 - [ ] Understand GitHub Copilot's core features
-- [ ] Know how to use chat participants and slash commands
 - [ ] Be able to generate code with AI assistance
 - [ ] Plan and implement changes using AI assistance
 - [ ] Know how to review and commit AI-generated code
 
-**Estimated Time:** 15-20 minutes
+**Estimated Time:** 20-30 minutes
 
 ## 🚀 Getting Started
 
-More information on installation can be found in the [README](../README.md) file. For a quick start, use the following steps:
+More information on installation can be found in the [README](../README.md) file.
 
-1. **Open the repository in your IDE** (e.g., VS Code)
-2. **Create new branch:** `git checkout -b USERNAME-copilot-exercises`
-3. **Install packages**: Run `npm install` in the terminal
-4. **Start the development server**: Run `npm run dev`
-5. **Open the project in your browser**: Go to [http://localhost:3000](http://localhost:3000) for a live preview
+## 🎯 Challenge One: Improve gallery modal UX
 
-Continue with the demo by following the steps below.
+For this challenge, we will improve the photo detail modal behavior in [GalleryGrid](../src/components/gallery/GalleryGrid.tsx). The goal is to make the modal feel polished and easier to use.
 
-## 🎯 Step 1: Discover Available Features
+You have three options for how to implement this challenge. Feel free to get creative and use the option that best suits your workflow. You can also combine options if you like.
 
-Mode: Ask <br>
-Delegate session: Local
+**Definition of Done**
+- Go to the gallery page after running the app locally.
+- Complete the checks in both **Grid view** and **List view**:
+  - [ ] Select **View Details** on a photo.
+  - [ ] Press Escape closes the modal.
+  - [ ] Click outside the modal content closes it.
+  - [ ] The page cannot scroll while the modal is open.
+- [ ] Search, Filters, and the Grid/List toggle still work after the change.
 
-**Goal:** Learn what GitHub Copilot can do for you in Ask mode.
+### Option 1: Copilot
 
-**1:** Type the following slash command in the Copilot chat:
+Use inline suggestions to scaffold a few small UX improvements.
 
-**Prompt:**
-```markdown
-/
+**Features to use**
+- Inline suggestions
+- Next edit suggestions
+
+**Tips to complete:**
+
+1. Open [GalleryGrid](../src/components/gallery/GalleryGrid.tsx) and scan where `selectedPhoto` controls the modal open/close state.
+2. Add a short intent comment immediately below the `selectedPhoto` and `likedPhotos` state declarations (for example: `// Close modal on Escape and disable page scroll while modal is open`) and pause for an inline suggestion before typing more.
+
+> **_NOTE_** If it doesn't appear, try typing a few more words or pressing Enter to trigger it. like `useEffect(() => {` and pause for a suggestion._
+
+3. Find where the modal is rendered and add a short intent comment (for example: add comment `{/* Close modal on backdrop click */}`) in the empty space after `{/* Photo Detail Modal - Placeholder for future implementation */}` and pause for an inline suggestion before typing more.
+
+> **_NOTE_** If it doesn't appear, try typing a few more words or pressing Enter to trigger it. like `onClick={() => {` and pause for a suggestion.
+
+4. Implement one behavior at a time and use **Next Edit Suggestions** after each accepted change to jump to the next likely edit (Escape handling, then backdrop click, then scroll lock).
+5. Keep this challenge behavior-only: reject suggestions that change modal text, card layouts, Search, Filters, or Grid/List behavior, then test all requirements after each accepted edit.
+
+### Option 2: Copilot Chat
+
+Use Chat to plan and implement the exact same fix.
+
+**Features to use**
+- Plan mode
+- Agent mode
+- Model picker
+- Auto model selection
+
+**Tips to complete:**
+
+- Change agent to _Plan mode_ or _Agent mode_
+  - Use whichever mode you're most unfamiliar with to plan or implement the changes.
+- Use _'Auto model selection'_ to pick the best model for the task or a model you want to try out.
+
+_Suggested prompt_
+
+```text
+In GalleryGrid.tsx, improve the photo detail modal UX:
+1) close on Escape,
+2) close on backdrop click,
+3) disable page scroll while modal is open.
+Please keep the current UI and content unchanged.
+The same modal is opened from both Grid view and List view, so preserve and verify both layouts.
 ```
 
-Scroll through the available commands listed in the dropdown.
+### Option 3: Copilot App
 
-**2:** View the available tools by typing the following in the Copilot chat:
+Use Copilot App! This is a new way to use Copilot that allows you to automate workflows, run multiple sessions across every area of work, and extend agents with your own tools. This is optional, so if you cannot download the app, you can still complete the challenge using Options 1 or 2.
 
-**Prompt:**
-```markdown
-#
-```
+**Features to use**
+- [GitHub Copilot App](https://github.com/features/ai/github-app)
+- Model picker
+- Agents
+- PR summary and creation
 
-Scroll through the available commands listed in the dropdown.
+**Tips to complete:**
 
-**3:** Do the same for viewing available chat participants:
+1. Open the GitHub Copilot App
+2. Select the `+` button on the right of `Sessions`
+3. Select `Local folder or repository...` and choose this repository
+4. Update the branch from `main` to your **current branch**
+5. Look over the options such as `Interactive`, `Plan`, and `Autopilot` to see which one you want to use for this challenge. You can also try out multiple options if you like.
+6. Use the suggested prompt from Option 2 to implement the changes in GalleryGrid.tsx.
+7. View change by selecting `Changes` on the bottom left of the chat
+8. Look over the other options in that panel. Select `Terminal` and run `npm run dev` to view the changes in your browser.
+9. `Ctrl + click` (Windows/Linux) or `Cmd + click` (macOS) on the `http://localhost:3000` link to open the app directly in GitHub Copilot App.
+10. Once you are happy with the changes, click on the dropdown of `Create PR` on the top right to select `Create draft PR`.
+11. Click `Create draft PR` and view it on GitHub from your repository's **Pull requests** page OR in the GitHub Copilot App by selecting `PR #` on the top right of the chat.
 
-**Prompt:**
-```markdown
-@
-```
+Feel free to complete that PR to see the change in your current branch.
 
-Scroll through the available chat participants listed in the dropdown.
+## 🎯 Challenge Two: Review your work
 
-**Expected Result:** You'll see a list of available commands and features.
-
----
-
-## 📚 Step 2: Learn About the Project
-
-### 2.1 Get Project Overview
-**Prompt:**
-```markdown
-Give me a summary of the project and give an overview of the most impactful files. 
-```
-
-**Follow-up Action:**
-- Select the first page in the "Most Impactful Files"
-- Highlight the first section
-
-### 2.2 Explain Selected Code
-**Prompt:**
-```markdown
-/explain 
-```
-
-**What this does:** Copilot will explain the highlighted code section in detail.
-
-### 2.3 Get Improvement Suggestions
-**Prompt:**
-```markdown
-Tell me about the improvements that can be made in this repo.
-```
-
-**💡 Pro Tip:** Copilot can help not only with learning but also with planning and ideas!
-
-## 💻 Step 3: Generate Code with Copilot code completions
-
-Keep the Copilot Chat session, we will be using it in Step 4 to plan and implement. For this step, utilize inline code completions directly in your editor to generate the footer code.
-
-### Code Completions Instructions
-1. **Navigate to file:** Open [`src/app/layout.tsx`](../src/app/layout.tsx)
-2. **Find location:** Find `{/* REPLACE THIS COMMENT */}` immediately after `{children}`
-3. **Replace the marker:** Replace that comment with the following comment:
-
-```tsx
-{/* Create a footer for this section. It should contain the logo and copyright information. */}
-```
-
-4. **Wait for suggestion:** Copilot will suggest code automatically
-5. **Accept suggestion:** Press `Tab` to accept or `Esc` to dismiss
-6. **Check your changes:** Save the file and refresh [http://localhost:3000](http://localhost:3000) to see your new footer
-
-## 📝 Step 4: Plan and implement
-
-Mode: Plan
-Delegate session: Local
-
-**Goal:** Pick one improvement, create a plan, then implement and verify.
-
-Open Copilot Chat window with the list of improvements suggested for the project. Choose one of the improvements you would like to implement and follow the steps below.
-
-If you are unsure which improvement to pick, we have provided a suggested implementation option to continue the demo.
-
-<details>
-<summary>Implementation option</summary>
-Improve accessibility in `src/app/admin/page.tsx`: add descriptive `aria-label` values to each Recent Galleries View, Edit, and Delete action button. Include the gallery name in each label and keep the current UI and behavior unchanged.
-</details>
-<br>
-
-1. Select Plan mode in Copilot Chat
-2. Ask Copilot to generate a step-by-step implementation plan for your chosen improvement. Example prompt can be found in the `Implementation option` above.
-3. Look over the generated plan and answer any questions that might pop up in chat. You can select an option, or type in a custom response.
-4. Once approved, select `Start Implementation`
-5. Review and accept changes
-
-**What to notice**
-
-- You can customize the plan and give more details to Copilot during the plan phase
-- Once implementation starts, the mode switch from `plan` to `agent`
-- Copilot lists out the `Todos` and guides you through each step it is taking.
-
-## 📊 Step 5: Review and Commit Your Changes
-
-### Option A: Inline AI-Powered Review
+### Option 1: Inline AI-Powered Review
 
 1. **Select generated code:** Highlight the code that was created
 2. **Get review** Right-click → Select "Review"
-4. **Process feedback:** Review suggestions and accept/discard as needed
+3. **Process feedback:** Review suggestions and accept/discard as needed
 
-### Option B: Source Code AI-Powered Review
+### Option 2: Source Code AI-Powered Review
 
 1. **Select Source Control in the Activity Bar:** Click the Source Control icon in the left sidebar to open the source control panel.
 2. **Start review:** At the top of the Source Control view, hover over CHANGES, then click the `Code Review - Unstaged Changes` button. _See image below for reference_
@@ -155,34 +122,10 @@ Improve accessibility in `src/app/admin/page.tsx`: add descriptive `aria-label` 
 
 3. **View comments:** If Copilot has any comments, they will be shown inline in your file(s), and in the Problems tab.
 
-### Option C: Manual Review
-
-1. **Read the code:** Review what was generated
-2. **Check functionality:** Does it match the requirements?
-3. **Verify style:** Does it follow the project's coding standards?
-
-### Commit Your Changes
-1. **Open Source Control:** Click the Source Control icon in the left sidebar
-2. **Generate commit message:** Hover over the commit message box → Click "Generate Commit Message with Copilot"
-3. **Review and edit:** Modify the generated message if needed
-4. **Commit:** Click "Commit" then "Sync Changes" to push
-
-**🎉 Success indicator:** You should see your changes in the git history!
-
 ## ✅ Completion Checklist
 
 Mark off each item as you complete it:
 
-- [ ] Viewed available slash commands, tools, and chat participants successfully
-- [ ] Got project summary
-- [ ] Explained code with `/explain`
-- [ ] Generated footer code with AI
-- [ ] Planned and implemented project improvement
-- [ ] Reviewed the generated code
-- [ ] Committed changes to git
-
-## 🚀 What's Next?
-
-Congratulations! You've completed your first GitHub Copilot demo.
-
-👉 **[Start Engineering Practices Demo](./engineering-practices.md)**
+- [ ] Implement modal UX improvements in GalleryGrid.tsx
+- [ ] Review your work using Copilot's AI-powered review features
+- [ ] Tested new Copilot features you were not familiar with before this demo
