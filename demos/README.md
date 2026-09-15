@@ -52,7 +52,13 @@ Practice context engineering as a repeatable system. Compare vague, overloaded, 
 
 ### 3. Customize Copilot Demo (Option 2) ([customize-copilot-option-2.md](customize-copilot-option-2.md))
 **Overview:**  
-Use the latest customization challenge lab to explore instructions, agents, skills, and hooks from awesome-copilot in this repository.  
+Choose a standalone exercise or complete the full customization sequence. Each exercise retains the original prompts and references, with its own prerequisites and completion checks.
+
+1. [Custom Instructions](customize-copilot-option-2.md#exercise-1-custom-instructions) — compare instruction-driven UploadZone plans.
+2. [Custom Agent](customize-copilot-option-2.md#exercise-2-custom-agent) — compare Blueprint Mode with default Agent mode.
+3. [Custom Skill](customize-copilot-option-2.md#exercise-3-custom-skill) — generate a test plan and scaffolding with the Jest skill.
+4. [Hooks](customize-copilot-option-2.md#exercise-4-hooks) — identify an intentional broken link.
+
 **Key Skills:**  
 - Compare instruction-driven outputs
 - Use specialized agent modes

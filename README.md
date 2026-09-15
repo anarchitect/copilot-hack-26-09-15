@@ -17,6 +17,13 @@ Latest recommended guides (Option 2):
 - [Customize Copilot Demo (Option 2)](demos/customize-copilot-option-2.md)
 - [Cloud Agent Demo (Option 2)](demos/cloud-agent-option-2.md)
 
+The Customize Copilot demo can also be practiced as individual exercises:
+
+1. [Custom Instructions](demos/customize-copilot-option-2.md#exercise-1-custom-instructions)
+2. [Custom Agent](demos/customize-copilot-option-2.md#exercise-2-custom-agent)
+3. [Custom Skill](demos/customize-copilot-option-2.md#exercise-3-custom-skill)
+4. [Hooks](demos/customize-copilot-option-2.md#exercise-4-hooks)
+
 Original guides:
 
 - [Features Demo](demos/features-demo.md)

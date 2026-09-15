@@ -1,6 +1,17 @@
 # Customize Copilot Demo
 
-Welcome to the GitHub Copilot customization challenge lab. This version is built around four advanced customization areas from awesome-copilot and uses this Photo Gallery repo for realistic tasks.
+Welcome to the GitHub Copilot customization exercises. These four standalone exercises preserve the original challenge content from awesome-copilot and use this Photo Gallery repo for realistic tasks.
+
+## Choose an Exercise
+
+Complete the exercises in order for the full demo, or select one independently. No exercise requires output from another.
+
+1. [Custom Instructions](#exercise-1-custom-instructions) — compare UploadZone hardening plans with and without repository instructions.
+2. [Custom Agent](#exercise-2-custom-agent) — compare Blueprint Mode and default Agent mode on bulk photo operations.
+3. [Custom Skill](#exercise-3-custom-skill) — use the Jest skill to generate a test plan, scaffolding, and edge cases.
+4. [Hooks](#exercise-4-hooks) — run the broken-link checker and inspect its findings.
+
+**Shared setup:** Open this repository in your editor. Exercises 1–3 use Copilot Chat with access to repository files; Exercise 4 uses a terminal and the linked hook requirements. Start a fresh chat for each exercise and keep unrelated local changes separate.
 
 ## What You'll Learn
 By the end of this demo, you will:
@@ -22,11 +33,15 @@ By the end of this demo, you will:
 
 ---
 
-## 🎯 Challenge 1: Instructions
+## Exercise 1: Custom Instructions
 
 **Goal:** prove that instruction quality changes output quality.
 
 **Source:** [Instructions](https://awesome-copilot.github.com/instructions/)
+
+**Prerequisites:** Locate `/.github/copilot-instructions.md`, `/.github/instructions/react-tsx.instructions.md`, and `src/components/upload/UploadZone.tsx`. This exercise compares plans; do not implement the proposed edits.
+
+### Steps
 
 1. Use this prompt:
 
@@ -39,7 +54,7 @@ Return exactly these sections:
 4) Validation checklist
 ```
 
-2. Run the same prompt twice:
+2. Run the same prompt twice, starting a fresh chat for each run and keeping the model and attached context the same:
    - First without repository custom instructions
      - rename `/.github/copilot-instructions.md` to `/.github/copilot-instructions.md.bak`
      - rename `/.github/instructions/react-tsx.instructions.md` to `/.github/instructions/react-tsx.instructions.md.bak`
@@ -63,13 +78,24 @@ Return exactly these sections:
 - For a scalable option, manage instructions at the organization level and use wildcards for specific languages or frameworks.
   - Remember to keep this high-level and not repo-specific, as it will apply to all repos in the org.
 
+### Completion Check
+
+1. Save both plans and note differences in usage (if available), files reviewed, and adherence to repository conventions.
+2. Confirm both instruction files are restored to their original names, even if you stop the exercise early.
+
+[Next: Custom Agent](#exercise-2-custom-agent) · [Choose another exercise](#choose-an-exercise)
+
 ---
 
-## 🎭 Challenge 2: Agents
+## Exercise 2: Custom Agent
 
 **Goal:** use agent specialization to improve planning quality.
 
 **Source:** [Agents](https://awesome-copilot.github.com/agents/)
+
+**Prerequisites:** Open Copilot Chat and confirm **Blueprint Mode** is available in the agent picker. This exercise uses the existing custom agent; it does not require the Custom Instructions exercise or implementation of the proposed feature.
+
+### Steps
 
 1. Switch to **Blueprint Mode** from awesome-copilot agents in Copilot chat. This mode is designed for planning and architecture tasks.
 2. Review the Blueprint Mode markdown template in `/.github/agents/blueprint-mode.agent.md` to understand the expected output structure.
@@ -84,16 +110,24 @@ Design a resilient "bulk photo operations" flow for admin:
 Include architecture decisions, guardrails, and a test matrix.
 ```
 
-4. Switch to default Agent mode and run the same prompt.
+4. Switch to default Agent mode, start a fresh chat with the same model and attached context, and run the same prompt.
 5. Compare depth, structure, and implementation readiness.
 - Specifically, look for:
   - Implementation details. Are they feasible and well-explained?
   - Structure. Is the output organized into clear sections?
   - Missing assumptions. Are there any gaps in the proposed solution?
 
+### Completion Check
+
+1. Save the two designs and compare architecture decisions, guardrails, rollback strategies, and test matrices.
+2. Record which output is more implementation-ready and why.
+3. Switch back to default Agent mode before starting another exercise.
+
+[Next: Custom Skill](#exercise-3-custom-skill) · [Choose another exercise](#choose-an-exercise)
+
 ---
 
-## 🧩 Challenge 3: Skills
+## Exercise 3: Custom Skill
 
 **Goal:** run an awesome-copilot skill in a unique test-engineering workflow.
 
@@ -102,6 +136,10 @@ Include architecture decisions, guardrails, and a test matrix.
 Skill used in this challenge: **javascript-typescript-jest**
 
 Skill reference: [javascript-typescript-jest](https://github.com/github/awesome-copilot/tree/main/skills/javascript-typescript-jest)
+
+**Prerequisites:** Open Copilot Chat in default Agent mode and locate the skill definition below and `src/components/upload/UploadZone.tsx`. No previous exercise is required. Jest and a `test` script are not currently configured in this repository, so setup notes are part of the deliverable; installing a test harness is outside this exercise.
+
+### Steps
 
 1. Navigate to `.github/skills/javascript-typescript-jest/SKILL.md`
 2. Review the shared skill instructions for safety and fit with your repo conventions.
@@ -128,9 +166,18 @@ Then provide a "test maintenance checklist" for future UI changes.
 
 5. Evaluate whether output behaved like a reusable skill execution.
 
+### Completion Check
+
+1. Capture the test plan, test scaffolding, setup notes, and maintenance checklist.
+2. Confirm coverage includes the original behavior, accessibility, and follow-up edge cases, with consistent conventions across both responses.
+3. Distinguish generated tests from executed tests; do not claim they pass without a configured test harness.
+4. Review any generated file changes and keep or discard only changes from this exercise before continuing.
+
+[Next: Hooks](#exercise-4-hooks) · [Choose another exercise](#choose-an-exercise)
+
 ---
 
-## 🪝 Challenge 4: Hooks
+## Exercise 4: Hooks
 
 **Goal:** use a hook to identify broken links in a markdown file.
 
@@ -139,6 +186,10 @@ Then provide a "test maintenance checklist" for future UI changes.
 Hook used in this challenge: **Fix Broken Links**
 
 **Prerequisites:** [Fix Broken Links Hook Requirements](https://github.com/github/awesome-copilot/blob/main/hooks/fix-broken-links/README.md#requirements)
+
+This exercise runs independently in a terminal; no output from the Copilot Chat exercises is required.
+
+### Steps
 
 1. View and review the Fix Broken Links hook in `.github/hooks/fix-broken-links/`.
 2. Run the command for your shell from the repository root:
@@ -155,13 +206,20 @@ Hook used in this challenge: **Fix Broken Links**
   <a href="https://github.com/github/awesome-copilot/this-page-does-not-exist-404">read more</a>
 ```
 
+### Completion Check
+
+1. Capture the report showing `BROKEN (404)` for the intentional link.
+2. Confirm the planted link is unchanged so the exercise remains repeatable.
+
+[Choose another exercise](#choose-an-exercise)
+
 ---
 
 ## ✅ Completion Checklist
 
 Mark off each item as you complete it:
 
-- [ ] Completed the Instructions challenge and captured before/after quality differences
-- [ ] Completed the Agents challenge and compared mode behavior
-- [ ] Completed the Skills challenge with a repeatable trigger workflow
-- [ ] Completed the Hooks challenge and confirmed the broken link detection
+1. [ ] Completed the [Custom Instructions exercise](#exercise-1-custom-instructions) and captured before/after quality differences
+2. [ ] Completed the [Custom Agent exercise](#exercise-2-custom-agent) and compared mode behavior
+3. [ ] Completed the [Custom Skill exercise](#exercise-3-custom-skill) with a repeatable trigger workflow
+4. [ ] Completed the [Hooks exercise](#exercise-4-hooks) and confirmed the broken link detection
