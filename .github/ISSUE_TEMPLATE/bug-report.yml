@@ -1,0 +1,57 @@
+name: Bug report
+description: Something in the photo gallery app or a workshop exercise behaves incorrectly.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Fill in what you can — a partial repro is still useful.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the app or workshop is affected?
+      options:
+        - "Gallery (/gallery)"
+        - "Upload (/upload)"
+        - "Admin (/admin)"
+        - "Home (/)"
+        - "Navigation / layout"
+        - "Workshop guide or exercise"
+        - "Something else"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you see, and what did you expect instead?
+      placeholder: |
+        On /admin I clicked the trash icon and nothing happened.
+        I expected a confirmation, or the row to be removed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps, so someone else can hit the same bug.
+      placeholder: |
+        1. Go to /upload
+        2. Click "Upload & Process"
+        3. Nothing happens
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser and OS, and whether you ran locally, in a dev container, or a Codespace. Add `node -v` for build errors.
+      placeholder: "Chrome 140 / Windows 11 / local clone / node v20"
+    validations:
+      required: false

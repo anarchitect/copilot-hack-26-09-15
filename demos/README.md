@@ -1,6 +1,8 @@
-# Demo Guides for Photo Gallery & Portfolio
+# Workshop Guides for Photo Gallery & Portfolio
 
-This folder contains step-by-step demo guides for learning and practicing GitHub Copilot features in the Photo Gallery & Portfolio application. Each demo builds on the previous one, helping you master Copilot’s capabilities in a real-world Next.js project.
+This folder contains step-by-step guides for learning and practising GitHub Copilot features in the Photo Gallery & Portfolio application. Each one builds on the previous, helping you master Copilot’s capabilities in a real-world Next.js project.
+
+**Exercise** means you do the work and check a result. **Walkthrough** means you follow along and look at the outcome. Ordering lives in the sequence lists below, not in the titles, so guides can be reordered without renaming anything.
 
 ## Before you start
 
@@ -15,7 +17,7 @@ This folder contains step-by-step demo guides for learning and practicing GitHub
 - `/gallery` has Search, Filters, and working Grid/List controls. Gallery exercises must preserve both layouts.
 - Admin **Recent Galleries** has no View All link because `/admin/galleries` does not exist.
 
-## Recommended Demo Sequence & Descriptions
+## Recommended Sequence
 
 ### Agenda planning
 
@@ -28,7 +30,7 @@ This folder contains step-by-step demo guides for learning and practicing GitHub
 
 Hooks, Cloud Agent, and Stacked Pull Requests are optional extensions, not part of the recommended sequence. Allow extra time for any optional exercises, discussion, transitions, and breaks.
 
-### 1. Features Demo ([features-demo.md](features-demo.md))
+### 1. Features ([features-demo.md](features-demo.md))
 **Overview:**  
 Start here with the recommended features challenge. Improve gallery modal behavior using inline suggestions or Copilot Chat.  
 **Key Skills:**  
@@ -49,7 +51,7 @@ Take the Features Demo modal task into the desktop Copilot app, then go further:
 
 ---
 
-### 3. Engineering Practices Demo ([engineering-practices.md](engineering-practices.md))
+### 3. Engineering Practices ([engineering-practices.md](engineering-practices.md))
 **Overview:**  
 Practice context engineering as a repeatable system. Compare vague, overloaded, focused, and phase-separated approaches for the same upload tag autocomplete task.  
 **Key Skills:**  
@@ -62,7 +64,7 @@ Practice context engineering as a repeatable system. Compare vague, overloaded, 
 
 <a id="4-customize-copilot-demo"></a>
 
-### 4. Customize Copilot Demo
+### 4. Customize Copilot
 **Overview:**  
 Choose a standalone exercise or complete the three-exercise recommended customization sequence. Each exercise has its own Markdown file and retains the original prompts and references, with its own prerequisites and completion checks. No exercise requires output from another.
 
@@ -77,7 +79,7 @@ Choose a standalone exercise or complete the three-exercise recommended customiz
 
 ---
 
-## Optional Demo Sequence & Descriptions
+## Optional Sequence
 
 ### 1. Hooks ([hooks.md](hooks.md))
 **Overview:**
@@ -98,7 +100,7 @@ Ask Copilot in VS Code Agent mode to create a two-PR stack: extract the shared p
 
 ---
 
-### 3. Cloud Agent Demo ([cloud-agent.md](cloud-agent.md))
+### 3. Cloud Agent ([cloud-agent.md](cloud-agent.md))
 **Time allocation:** 15 minutes hands-on; 30-45 minutes elapsed.
 
 **Overview:**  
@@ -111,7 +113,7 @@ Use Copilot in GitHub to generate a standup report, create a feature issue, and 
 
 ---
 
-### 4. Features Demo ([features-demo-classic.md](features-demo-classic.md))
+### 4. Features ([features-demo-classic.md](features-demo-classic.md))
 **Overview:**  
 Start here to explore Copilot’s core features. Learn how to use chat commands, generate code, and review AI suggestions.  
 **Key Skills:**  
@@ -123,7 +125,7 @@ Start here to explore Copilot’s core features. Learn how to use chat commands,
 
 ---
 
-### 5. Engineering Practices Demo ([engineering-practices-classic.md](engineering-practices-classic.md))
+### 5. Engineering Practices ([engineering-practices-classic.md](engineering-practices-classic.md))
 **Overview:**  
 Dive deeper into professional Copilot tools for teams. Inspect Copilot interactions, export and import agent debug sessions, and explore system prompts for consistent code generation.
 **Key Skills:**  
@@ -134,7 +136,7 @@ Dive deeper into professional Copilot tools for teams. Inspect Copilot interacti
 
 ---
 
-### 6. Customize Copilot Demo ([customize-copilot-classic.md](customize-copilot-classic.md))
+### 6. Customize Copilot ([customize-copilot-classic.md](customize-copilot-classic.md))
 **Overview:**  
 Learn advanced customization techniques. Monitor AI credit usage, switch models, use prompt files, experiment with custom agent modes, and set up custom instructions for your team.
 **Key Skills:**  
@@ -145,7 +147,7 @@ Learn advanced customization techniques. Monitor AI credit usage, switch models,
 
 ---
 
-### 7. Copilot Spaces Demo ([copilot-spaces.md](copilot-spaces.md))
+### 7. Copilot Spaces ([copilot-spaces.md](copilot-spaces.md))
 **Overview:**  
 Collaborate in dedicated Copilot Spaces. Create a Space, set goals, add context files, and work together to implement new features with AI assistance.  
 **Key Skills:**  
@@ -156,7 +158,7 @@ Collaborate in dedicated Copilot Spaces. Create a Space, set goals, add context 
 
 ---
 
-### 8. Cloud Agent Demo (original guide) ([cloud-agent-classic.md](cloud-agent-classic.md))
+### 8. Cloud Agent (original guide) ([cloud-agent-classic.md](cloud-agent-classic.md))
 **Overview:**  
 Experience GitHub Copilot as a cloud agent to accelerate building and enhancing features in your Photo Gallery & Portfolio application.  
 **Key Skills:**  
@@ -166,7 +168,7 @@ Experience GitHub Copilot as a cloud agent to accelerate building and enhancing 
 
 ---
 
-## How to Use These Demos
+## How to Use These Guides
 
 1. Start with the recommended sequence unless your instructor directs you to the optional guides.
 2. Follow the instructions and prompts in each file.

@@ -1,4 +1,4 @@
-# GitHub Copilot Spaces Demo
+# Walkthrough: GitHub Copilot Spaces
 
 Welcome to the GitHub Copilot Spaces demo! In this exercise, you'll learn how to create and utilize GitHub Copilot Spaces to collaborate on development tasks within the Photo Gallery & Portfolio application.
 

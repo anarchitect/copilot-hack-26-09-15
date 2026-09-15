@@ -29,7 +29,7 @@
 export const GUIDES = [
     {
         id: "features",
-        title: "Features Demo",
+        title: "Features Exercise",
         source: "demos/features-demo.md",
         estimate: "20-30 min",
         goal:
@@ -172,7 +172,7 @@ export const GUIDES = [
 
     {
         id: "engineering",
-        title: "Engineering Practices Demo",
+        title: "Engineering Practices Exercise",
         source: "demos/engineering-practices.md",
         estimate: "30-40 min (+15 min bonus)",
         goal:
@@ -372,7 +372,7 @@ export const GUIDES = [
 
     {
         id: "customize",
-        title: "Customize Copilot Demo",
+        title: "Customize Copilot Exercise",
         source: "demos/README.md",
         estimate: "35-50 min",
         goal:
@@ -538,7 +538,7 @@ export const GUIDES = [
 
     {
         id: "cloud-agent",
-        title: "Cloud Agent Demo",
+        title: "Cloud Agent Exercise",
         source: "demos/cloud-agent.md",
         estimate: "15 min hands-on; 30-45 min elapsed",
         goal:

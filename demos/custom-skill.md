@@ -1,4 +1,4 @@
-# Exercise 3: Custom Skill
+# Exercise: Custom Skill
 
 Part of the Customize Copilot Demo. Complete this exercise independently or follow the [full sequence](README.md#4-customize-copilot-demo).
 

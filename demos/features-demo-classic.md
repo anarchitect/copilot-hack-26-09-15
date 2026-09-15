@@ -1,4 +1,4 @@
-# Features Demo
+# Walkthrough: Features (original guide)
 
 Welcome to this repository! You're probably wondering what it is and how it works. We will be working with this repository for the duration of this training, so it's important to find out what it's doing now!
 
