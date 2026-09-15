@@ -276,12 +276,12 @@ Because the feature is in public preview, the CLI surface may change. It is avai
 
 Use the existing `PhotoActions` component in [GalleryGrid](../src/components/gallery/GalleryGrid.tsx):
 
-| PR | Change | Base branch | Head branch |
-| --- | --- | --- | --- |
-| PR 1 | Extract `PhotoActions` into its own file without changing behavior | `main` | `stack/photo-actions` |
-| PR 2 | Add native Like/Unlike tooltips to the extracted component | `stack/photo-actions` | `stack/like-tooltips` |
+| Layer | PR | Change | Base branch | Head branch |
+| --- | --- | --- | --- | --- |
+| Bottom | PR 1 | Extract `PhotoActions` into its own file without changing behavior | `main` | `stack/photo-actions` |
+| Top | PR 2 | Add native Like/Unlike tooltips to the extracted component | `stack/photo-actions` | `stack/like-tooltips` |
 
-The dependency chain is `main → stack/photo-actions → stack/like-tooltips`. PR 2 builds on PR 1's extracted file; it is not a second independent branch from `main`. Its **Files changed** tab should show only the tooltip addition, not the extraction.
+The dependency chain is `main → stack/photo-actions → stack/like-tooltips`. PR 2 builds on PR 1's extracted file; it is not a second independent branch from `main`. Its **Files changed** tab should show only the tooltip addition, not the extraction. Both PRs must also belong to the same stack object on GitHub, which is what Step 3 checks.
 
 ### Before you start
 
@@ -330,10 +330,13 @@ and stop before publishing; do not fix unrelated issues.
 Review the diff for unintended changes and secrets, then commit only
 the extraction.
 
-Run gh stack submit to push the branch and open the PR as a draft, with
-title "Extract shared photo actions" and a body describing scope,
-validation results, and its role as the bottom of the stack.
-Follow the repository's PR template if present.
+Run gh stack submit --auto to push the branch and open the PR. With --auto,
+new PRs are created as DRAFTS by default; there is no --draft flag, and
+running submit interactively defaults to ready-for-review instead.
+Because --auto generates the PR title, set the final title and body
+afterwards with gh pr edit: title "Extract shared photo actions" and a body
+describing scope, validation results, and its role as the bottom of the
+stack. Follow the repository's PR template if present.
 
 Return the actual PR URL, then run gh stack view and confirm the PR's
 stack field is not null using:
@@ -378,10 +381,11 @@ only the tooltip change. Before submitting, verify
 git diff origin/stack/photo-actions...HEAD shows ONLY the tooltip addition
 in PhotoActions.tsx. If it does not, stop and report the discrepancy.
 
-Run gh stack submit to push the branch and open the second PR as a draft,
-title "Add Like/Unlike tooltips", and a body with the actual bottom PR URL,
-"Depends on the layer below; merges bottom-up", and validation results.
-Follow the repository's PR template if present.
+Run gh stack submit --auto to push the branch and open the second PR as a
+draft (there is no --draft flag). Then set the final title and body with
+gh pr edit: title "Add Like/Unlike tooltips", and a body with the actual
+bottom PR URL, "Depends on the layer below; merges bottom-up", and
+validation results. Follow the repository's PR template if present.
 
 Run gh stack view and confirm BOTH PRs appear in one stack with the correct
 order. Then confirm both PRs report the SAME non-null stack number via the
