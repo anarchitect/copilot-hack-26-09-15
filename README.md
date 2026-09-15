@@ -75,10 +75,10 @@ Once ready, you can access the application at the forwarded port URL provided in
 
 ### Local Installation
 
-1. Clone the repository (use your own fork if you have one):
+1. Clone the repository (replace `<repository-url>` with the clone URL of this repository or your own fork):
    ```bash
-   git clone https://github.com/<your-org>/copilot-intermediate-gallery-repo-jjc.git
-   cd copilot-intermediate-gallery-repo-jjc
+   git clone <repository-url> gallery-repo
+   cd gallery-repo
    ```
 2. Install dependencies:
    ```bash
