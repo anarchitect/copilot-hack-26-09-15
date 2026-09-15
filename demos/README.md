@@ -79,11 +79,11 @@ Identify an intentional broken link with the Fix Broken Links hook.
 
 ### 2. Stacked Pull Requests ([exercise](engineering-practices-option-2.md#optional-exercise-stacked-pull-requests))
 **Overview:**
-Ask Copilot in VS Code Agent mode to create a two-PR stack: extract the shared photo actions, then add Like/Unlike tooltips in a dependent PR. Adapted from official GitHub documentation, this exercise uses Git and authenticated GitHub CLI. Verify the actual PR branches and incremental diff; no stacking tool is required.
+Ask Copilot in VS Code Agent mode to create a two-PR stack: extract the shared photo actions, then add Like/Unlike tooltips in a dependent PR. Uses GitHub's stacked pull requests feature (public preview) via the `gh stack` CLI extension. Verify the PR branches, the incremental diff, and that GitHub registered a real stack object.
 **Key Skills:**
 1. Split a refactor and a small feature into focused PRs.
-2. Choose the correct base branch and link dependencies.
-3. Review incremental diffs and merge in dependency order.
+2. Create a real stack with `gh stack`, not just chained base branches.
+3. Review incremental diffs and merge bottom-up.
 
 ---
 
