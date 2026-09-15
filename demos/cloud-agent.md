@@ -1,4 +1,4 @@
-# Cloud Agent Demo
+# Exercise: Cloud Agent
 
 ---
 

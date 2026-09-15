@@ -1,4 +1,4 @@
-# Engineering Practices Demo
+# Walkthrough: Engineering Practices (original guide)
 
 Welcome to the GitHub Copilot engineering practices demo! Here we're going to get comfortable with the professional tools and features in GitHub Copilot. We'll start in the VS Code IDE and then move to github.com for additional collaboration features.
 

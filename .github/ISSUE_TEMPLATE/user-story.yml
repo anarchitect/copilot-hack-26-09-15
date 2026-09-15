@@ -1,0 +1,53 @@
+name: User story
+description: A small, self-contained improvement to the photo gallery app, sized for one Copilot session.
+title: "[Story]: "
+labels: ["enhancement", "user story"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep it small and verifiable — one screen or component, with a clear "done" you can check in the running app or in a diff. That shape also makes a good Copilot prompt.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - "Gallery (/gallery)"
+        - "Upload (/upload)"
+        - "Admin (/admin)"
+        - "Home (/)"
+        - "Navigation / layout"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: story
+    attributes:
+      label: User story
+      description: One sentence, in the "As a … I want … so that …" shape.
+      placeholder: "As a visitor, I want the Download button to save the photo, so that I can keep images I like."
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: A short checklist. Each item must be checkable in the running app or a diff, not a matter of taste.
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ] Existing layout, styling and behaviour elsewhere are unchanged
+    validations:
+      required: true
+
+  - type: input
+    id: files
+    attributes:
+      label: Likely files
+      description: Where you think the change lives — a hint for whoever picks it up.
+      placeholder: "src/components/gallery/GalleryGrid.tsx"
+    validations:
+      required: false

@@ -1,6 +1,6 @@
-# Hooks
+# Exercise: Hooks
 
-Optional extension to the Customize Copilot Demo. Complete this exercise independently or explore the [optional guides](README.md#optional-demo-sequence--descriptions).
+Optional extension to the Customize Copilot Demo. Complete this exercise independently or explore the [optional guides](README.md#optional-sequence).
 
 **Setup:** Open this repository in your editor and a terminal at the repository root. Keep unrelated local changes separate.
 
@@ -42,4 +42,4 @@ This exercise runs independently in a terminal; no output from the Copilot Chat 
 
 [Next exercise: Stacked Pull Requests](stacked-pull-requests.md)
 
-[Choose another optional exercise](README.md#optional-demo-sequence--descriptions)
+[Choose another optional exercise](README.md#optional-sequence)

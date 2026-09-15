@@ -1,4 +1,4 @@
-# Cloud Agent Demo
+# Walkthrough: Cloud Agent (original guide)
 
 Welcome to the GitHub Copilot Cloud Agent demo! This hands-on guide will help you experience how GitHub Copilot can accelerate building and enhancing features in your Photo Gallery & Portfolio application.
 

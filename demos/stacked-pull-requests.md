@@ -1,4 +1,4 @@
-# Stacked Pull Requests
+# Exercise: Stacked Pull Requests
 
 **Optional exercise.** Follows [Hooks](hooks.md); no output from the Hooks exercise is required.
 

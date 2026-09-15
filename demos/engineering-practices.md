@@ -1,4 +1,4 @@
-# Engineering Practices Demo
+# Exercise: Engineering Practices
 
 Welcome to the GitHub Copilot engineering practices demo. In this demo, we will practice context engineering as a repeatable system, not just prompt wording.
 

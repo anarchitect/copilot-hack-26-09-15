@@ -1,4 +1,4 @@
-# Exercise 2: Custom Agent
+# Exercise: Custom Agent
 
 Part of the Customize Copilot Demo. Complete this exercise independently or follow the [full sequence](README.md#4-customize-copilot-demo).
 

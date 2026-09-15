@@ -10,25 +10,25 @@ A professional photo gallery and portfolio application built with Next.js 15, Ty
 
 ### Demo Tracks
 
-Recommended guides:
+Recommended exercises:
 
-1. [Features Demo](demos/features-demo.md)
+1. [Features](demos/features-demo.md)
 2. [GitHub Copilot App](demos/copilot-app.md)
-3. [Engineering Practices Demo](demos/engineering-practices.md)
+3. [Engineering Practices](demos/engineering-practices.md)
 4. [Custom Instructions](demos/custom-instructions.md)
 5. [Custom Agent](demos/custom-agent.md)
 6. [Custom Skill](demos/custom-skill.md)
 
-Optional guides:
+Optional exercises and walkthroughs:
 
 - [Hooks](demos/hooks.md)
-- [Stacked Pull Requests exercise](demos/stacked-pull-requests.md)
-- [Cloud Agent Demo](demos/cloud-agent.md)
-- [Features Demo](demos/features-demo-classic.md)
-- [Engineering Practices Demo](demos/engineering-practices-classic.md)
-- [Customize Copilot Demo](demos/customize-copilot-classic.md)
-- [Copilot Spaces Demo](demos/copilot-spaces.md)
-- [Cloud Agent Demo (original guide)](demos/cloud-agent-classic.md)
+- [Stacked Pull Requests](demos/stacked-pull-requests.md)
+- [Cloud Agent](demos/cloud-agent.md)
+- [Features (original guide)](demos/features-demo-classic.md)
+- [Engineering Practices (original guide)](demos/engineering-practices-classic.md)
+- [Customize Copilot (original guide)](demos/customize-copilot-classic.md)
+- [Copilot Spaces](demos/copilot-spaces.md)
+- [Cloud Agent (original guide)](demos/cloud-agent-classic.md)
 
 ### Current Application Routes
 

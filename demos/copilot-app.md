@@ -1,4 +1,4 @@
-# GitHub Copilot App
+# Exercise: GitHub Copilot App
 
 **Follows [Features Demo](features-demo.md).** The GitHub Copilot app is a desktop app built on Copilot CLI that runs parallel agent sessions, each in its own git worktree and branch. This guide takes you from your first session through to letting an agent land a pull request on its own.
 
@@ -37,7 +37,7 @@ If you cannot install the app, each scenario ends with a fallback that keeps the
 
 # Scenario A — Your first session
 
-This is [Challenge One of the Features Demo](features-demo.md#-challenge-one-improve-gallery-modal-ux) done in the app. If you already finished it with inline suggestions or Copilot Chat, do it again here — the point is the app's session model, not the code.
+This is [Challenge One of the Features exercise](features-demo.md#-challenge-one-improve-gallery-modal-ux) done in the app. If you already finished it with inline suggestions or Copilot Chat, do it again here — the point is the app's session model, not the code.
 
 **First make sure the defects are still there.** The app cuts each session's worktree from your current commit, so if you already committed the Features fix, the session inherits it, there is nothing to fix, and checks 2–4 below pass without the agent doing anything. Either `git stash` your Features work or start from a commit that still has the bug.
 
