@@ -253,19 +253,24 @@ Explore how `react-dropzone` reports refused files and use that to surface the r
 
 ## Optional Exercise: Stacked Pull Requests
 
-A **stacked PR** targets another feature branch instead of the default branch. This lets you review a small foundation change separately from the change that uses it, without waiting for the first PR to merge.
+A **stack** is a chain of pull requests in the same repository where the bottom PR targets a trunk branch (usually `main`) and each PR above it targets the branch of the PR below. This lets you review a small foundation change separately from the change that uses it, without waiting for the first PR to merge.
 
-**Goal:** Ask Copilot to create the branches, implement the changes, commit, push, and open two linked PRs. You approve its tool calls and review the results—not manually create the stack.
+Stacked pull requests are a first-party GitHub feature, currently in **public preview**. GitHub stores a stack object on the server, which is what produces the stack icon, the stack map in the merge box, automatic cascading rebase, and bottom-up merge semantics.
+
+> **This is the part that is easy to get wrong.** Simply running `gh pr create --base <parent-branch>` chains the base branches and *looks* like a stack, but GitHub does not register it as one. The PR's `stack` field stays `null`, no stack UI appears, and you get none of the rebase or merge behavior. You must use the `gh stack` extension (or the REST/GraphQL stack endpoints) to create the stack object.
+
+**Goal:** Ask Copilot to create the branches, implement the changes, commit, and submit a real stack. You approve its tool calls and review the results—not manually create the stack.
 
 This optional exercise follows [Hooks](hooks-option-2.md). No output from the Hooks exercise is required.
 
 ### Official documentation behind this exercise
 
-1. [GitHub: Agent mode in VS Code](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide#agent-mode) describes how Copilot edits files and runs terminal commands.
-2. [GitHub: Creating a pull request](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request?tool=cli) documents `gh pr create --base my-base-branch --head my-changed-branch`.
-3. [GitHub: Changing the base branch](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/changing-the-base-branch-of-a-pull-request) explains retargeting a PR and its effect on review comments.
+1. [GitHub: About stacked pull requests](https://docs.github.com/en/pull-requests/get-started/about-stacked-prs) explains the stack model, the server-side stack object, and merge behavior.
+2. [GitHub: Quickstart for stacked pull requests](https://docs.github.com/en/pull-requests/get-started/stacked-prs-quickstart) documents `gh stack init`, `add`, `push`, `submit`, and `view`.
+3. [GitHub: Stacked pull requests CLI commands](https://docs.github.com/en/pull-requests/reference/stacked-prs-cli-commands) is the full command reference.
+4. [GitHub: Agent mode in VS Code](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide#agent-mode) describes how Copilot edits files and runs terminal commands.
 
-The gallery example below adapts these documented capabilities; it is not an official GitHub sample or a special stacked-PR slash command. The defining step is opening PR 2 with PR 1's branch as its base.
+Because the feature is in public preview, the CLI surface may change. It is available on GitHub.com and GitHub Enterprise Cloud; it is not available on GitHub Enterprise Server, does not support cross-fork stacks, and is not supported in GitHub Desktop.
 
 ### Simple sample
 
@@ -282,65 +287,85 @@ The dependency chain is `main → stack/photo-actions → stack/like-tooltips`. 
 
 1. Open your own fork or training repository in VS Code. You need permission to push branches and create draft PRs there.
 2. Select **Agent** in Copilot Chat, with file-editing and terminal tools enabled. Review command approvals rather than enabling blanket approval. If Agent mode or terminal execution is unavailable under your organization's policy, stop: Ask/Plan mode alone cannot execute this exercise.
-3. Install Git, GitHub CLI (`gh`), and the project's Node.js/npm prerequisites. Sign in using `gh auth login` if needed and confirm with `gh auth status`. Never paste credentials into chat.
-4. Confirm `git remote -v` points `origin` to your training repository. Replace every `OWNER/REPO` below with that repository, and replace `main` if its default branch differs. Explicit `--repo` arguments prevent a fork's PRs from accidentally targeting upstream.
-5. Start with a clean working tree and unused exercise branch names. Commit or stash earlier exercise work first. Install project dependencies using the repository's setup instructions.
-6. For the optional merge steps, the repository must allow **Create a merge commit**. If it only allows squash or rebase merges, complete the review exercise without merging; those methods require additional restacking.
+3. Install Git, GitHub CLI (`gh`) 2.90.0 or later, and the project's Node.js/npm prerequisites. Sign in using `gh auth login` if needed and confirm with `gh auth status`. Never paste credentials into chat.
+4. Install the stacked-PR extension and confirm it runs:
 
-### Step 1: Ask Copilot to create PR 1
+   ```bash
+   gh extension install github/gh-stack
+   gh stack --version
+   ```
+
+   Optionally install the companion skill so Copilot uses the extension correctly: `gh skill install github/gh-stack`.
+5. Confirm `git remote -v` points `origin` to your training repository. Replace every `OWNER/REPO` below with that repository, and replace `main` if its default branch differs. Explicit `--repo` arguments prevent a fork's PRs from accidentally targeting upstream. The stack must live entirely in one repository—cross-fork stacks are not supported.
+6. Start with a clean working tree and unused exercise branch names. Commit or stash earlier exercise work first. Install project dependencies using the repository's setup instructions.
+
+### Step 1: Ask Copilot to build the bottom of the stack
 
 Attach `src/components/gallery/GalleryGrid.tsx` to a fresh **Agent** chat. Replace `OWNER/REPO` before submitting:
 
 ```text
-Create the FIRST PR of a two-PR stack in OWNER/REPO, using local Git
-and GitHub CLI. Execute the work, not just suggest commands.
+Build the BOTTOM layer of a two-PR stack in OWNER/REPO, using local Git
+and the gh stack extension. Execute the work, not just suggest commands.
 
-First confirm gh authentication, that origin points to OWNER/REPO,
-that the working tree is clean, and that main is the default branch.
+First confirm gh authentication, that gh stack --version works, that origin
+points to OWNER/REPO, that the working tree is clean, and that main is the
+default branch.
 Stop and ask if any check fails or an exercise branch/PR already exists.
 Do not overwrite work, force-push, or target an upstream repository.
 
-Fetch origin and create stack/photo-actions from origin/main.
+Fetch origin, then run: gh stack init stack/photo-actions
+This creates the stack with main as trunk and checks out the new branch.
+Do NOT use gh pr create --base for this exercise: chaining base branches
+that way does not create a stack object on GitHub.
+
 Extract PhotoActions and its props interface from
 src/components/gallery/GalleryGrid.tsx into
 src/components/gallery/PhotoActions.tsx and import it back.
 Preserve handlers, accessibility, styling, and both Grid and List views.
+Keep any lucide-react icons that GalleryGrid still uses in its own import.
 Do not implement tooltips yet or add dependencies.
 
 Run npm run lint and npm run build. If either fails, report the failure
 and stop before publishing; do not fix unrelated issues.
 Review the diff for unintended changes and secrets, then commit only
-the extraction and push stack/photo-actions to origin.
+the extraction.
 
-Use gh pr create with --repo OWNER/REPO --base main
---head stack/photo-actions --draft, title "Extract shared photo actions",
-and a body describing scope, validation results, and its role as PR 1.
+Run gh stack submit to push the branch and open the PR as a draft, with
+title "Extract shared photo actions" and a body describing scope,
+validation results, and its role as the bottom of the stack.
 Follow the repository's PR template if present.
 
-Return the actual PR URL and use gh pr view to verify its base, head,
-and open/draft state. Leave PR 1 UNMERGED for PR 2 to build on.
-Stop here; do not create PR 2 yet. If a tool or permission is unavailable,
-report the blocker rather than claiming the PR was created.
+Return the actual PR URL, then run gh stack view and confirm the PR's
+stack field is not null using:
+gh api graphql -f query='{repository(owner:"OWNER",name:"REPO"){
+pullRequest(number:NUMBER){stack{number size}}}}'
+Leave the PR UNMERGED for the next layer to build on.
+Stop here; do not add the second layer yet. If a tool or permission is
+unavailable, report the blocker rather than claiming the PR was created.
 ```
 
 1. Approve the intended tool calls and inspect the actual PR URL Copilot returns. A proposed command or draft description in chat is not a created PR.
-2. Review PR 1's **Files changed**: only the extraction should appear. Use `npm run dev` to check `/gallery` in Grid and List views: Like/Unlike and View Details should still work.
-3. Keep PR 1 open and unmerged. Continue only after its checks pass.
+2. Review the PR's **Files changed**: only the extraction should appear. Use `npm run dev` to check `/gallery` in Grid and List views: Like/Unlike and View Details should still work.
+3. Keep the PR open and unmerged. Continue only after its checks pass.
 
-### Step 2: Ask Copilot to stack PR 2 on PR 1
+### Step 2: Ask Copilot to add the second layer
 
 Start a fresh **Agent** chat, attach the extracted `PhotoActions.tsx`, and replace both `OWNER/REPO` and `PR1_URL`:
 
 ```text
-Create the SECOND PR of our stack in OWNER/REPO. PR 1 is PR1_URL.
-Use local Git and GitHub CLI to execute this, not just describe it.
+Add the SECOND layer to our stack in OWNER/REPO. The bottom PR is PR1_URL.
+Use local Git and the gh stack extension to execute this, not just describe it.
 
 Verify origin and GitHub authentication, a clean working tree, and that
-PR 1 is OPEN and UNMERGED with base main and head stack/photo-actions.
+the bottom PR is OPEN and UNMERGED with base main and head
+stack/photo-actions. Confirm gh stack view shows the existing stack.
 Stop if these checks fail or stack/like-tooltips or its PR already exists.
 
-Fetch origin and create stack/like-tooltips from
-origin/stack/photo-actions, NOT from main.
+From stack/photo-actions, run: gh stack add stack/like-tooltips
+This branches from the layer below, not from main, and records the new
+layer in the stack. Do not create the branch with git checkout -b or open
+the PR with gh pr create --base.
+
 In src/components/gallery/PhotoActions.tsx, add a native title tooltip
 to the Like button matching its existing dynamic aria-label:
 "Like <photo title>" when unliked and "Unlike <photo title>" when liked.
@@ -349,24 +374,22 @@ Do not change Download or Share, add dependencies, or redo the extraction.
 
 Run npm run lint and npm run build; stop before publishing on failure.
 Inspect the working diff for unintended changes and secrets, then commit
-only the tooltip change. Before pushing, verify
+only the tooltip change. Before submitting, verify
 git diff origin/stack/photo-actions...HEAD shows ONLY the tooltip addition
 in PhotoActions.tsx. If it does not, stop and report the discrepancy.
-Push stack/like-tooltips to origin only after this check passes.
 
-Create a draft PR with gh pr create --repo OWNER/REPO
---base stack/photo-actions --head stack/like-tooltips --draft,
-title "Add Like/Unlike tooltips", and a body with the actual PR 1 URL,
-"Depends on PR 1; do not merge before it", and validation results.
+Run gh stack submit to push the branch and open the second PR as a draft,
+title "Add Like/Unlike tooltips", and a body with the actual bottom PR URL,
+"Depends on the layer below; merges bottom-up", and validation results.
 Follow the repository's PR template if present.
-Add a comment on PR 1 linking the actual PR 2 URL.
 
-Use gh pr view to verify BOTH PRs' actual base/head branches and open
-state, and gh pr diff to confirm PR 2 contains only the tooltip change.
-Return both URLs and the verification results.
+Run gh stack view and confirm BOTH PRs appear in one stack with the correct
+order. Then confirm both PRs report the SAME non-null stack number via the
+GraphQL stack field. Use gh pr diff to confirm the top PR contains only the
+tooltip change. Return both URLs, the stack number, and the results.
 Do not merge either PR, enable auto-merge, force-push, or target upstream.
 If blocked, report the blocker; do not claim success or substitute two
-independent PRs targeting main.
+independent PRs targeting main, or base-chained PRs with a null stack.
 ```
 
 Approve the intended tool calls. In `/gallery`, hover the Like button in both layouts, toggle it, then move away and hover again to verify the tooltip updates. Confirm the like count and pressed state still update.
