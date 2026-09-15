@@ -38,6 +38,6 @@ This exercise runs independently in a terminal; no output from the Copilot Chat 
 
 1. [ ] Completed the Hooks exercise and confirmed the broken link detection
 
-[Next exercise: Stacked Pull Requests](engineering-practices-option-2.md#optional-exercise-stacked-pull-requests)
+[Next exercise: Stacked Pull Requests](stacked-pull-requests.md)
 
 [Choose another optional exercise](README.md#optional-demo-sequence--descriptions)

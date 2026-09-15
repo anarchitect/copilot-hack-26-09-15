@@ -21,7 +21,7 @@ Recommended guides:
 Optional guides:
 
 - [Hooks](demos/hooks-option-2.md)
-- [Stacked Pull Requests exercise](demos/engineering-practices-option-2.md#optional-exercise-stacked-pull-requests)
+- [Stacked Pull Requests exercise](demos/stacked-pull-requests.md)
 - [Cloud Agent Demo](demos/cloud-agent-option-2.md)
 - [Features Demo](demos/features-demo.md)
 - [Engineering Practices Demo](demos/engineering-practices.md)
