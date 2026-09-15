@@ -1,6 +1,6 @@
 # Exercise 4: Hooks
 
-Part of the Customize Copilot Demo (Option 2). Complete this exercise independently or follow the [full sequence](README.md#3-customize-copilot-demo-option-2).
+Optional extension to the Customize Copilot Demo. Complete this exercise independently or explore the [optional guides](README.md#optional-demo-sequence--descriptions).
 
 **Setup:** Open this repository in your editor and a terminal at the repository root. Keep unrelated local changes separate.
 
@@ -38,4 +38,4 @@ This exercise runs independently in a terminal; no output from the Copilot Chat 
 
 1. [ ] Completed the Hooks exercise and confirmed the broken link detection
 
-[Choose another exercise](README.md#3-customize-copilot-demo-option-2)
+[Choose another optional exercise](README.md#optional-demo-sequence--descriptions)

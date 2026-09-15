@@ -50,4 +50,4 @@ Then provide a "test maintenance checklist" for future UI changes.
 
 1. [ ] Completed the Custom Skill exercise with a repeatable trigger workflow
 
-[Next: Hooks](hooks-option-2.md) · [Choose another exercise](README.md#3-customize-copilot-demo-option-2)
+[Optional: Hooks](hooks-option-2.md) · [Choose another exercise](README.md#3-customize-copilot-demo-option-2)
