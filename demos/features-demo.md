@@ -81,29 +81,25 @@ The same modal is opened from both Grid view and List view, so preserve and veri
 
 ### Option 3: Copilot App
 
-Use Copilot App! This is a new way to use Copilot that allows you to automate workflows, run multiple sessions across every area of work, and extend agents with your own tools. This is optional, so if you cannot download the app, you can still complete the challenge using Options 1 or 2.
+Use the GitHub Copilot app — a desktop app built on Copilot CLI that runs parallel agent sessions, each in its own git worktree and branch. This is optional; if you cannot install it, complete the challenge with Options 1 or 2.
 
 **Features to use**
 - [GitHub Copilot App](https://github.com/features/ai/github-app)
 - Model picker
-- Agents
-- PR summary and creation
+- Session modes
+- PR creation
 
 **Tips to complete:**
 
-1. Open the GitHub Copilot App
-2. Select the `+` button on the right of `Sessions`
-3. Select `Local folder or repository...` and choose this repository
-4. Update the branch from `main` to your **current branch**
-5. Look over the options such as `Interactive`, `Plan`, and `Autopilot` to see which one you want to use for this challenge. You can also try out multiple options if you like.
-6. Use the suggested prompt from Option 2 to implement the changes in GalleryGrid.tsx.
-7. View change by selecting `Changes` on the bottom left of the chat
-8. Look over the other options in that panel. Select `Terminal` and run `npm run dev` to view the changes in your browser.
-9. `Ctrl + click` (Windows/Linux) or `Cmd + click` (macOS) on the `http://localhost:3000` link to open the app directly in GitHub Copilot App.
-10. Once you are happy with the changes, click on the dropdown of `Create PR` on the top right to select `Create draft PR`.
-11. Click `Create draft PR` and view it on GitHub from your repository's **Pull requests** page OR in the GitHub Copilot App by selecting `PR #` on the top right of the chat.
+1. Open the GitHub Copilot app and sign in.
+2. Next to **Sessions**, select `+`, then **Local folder or repository** and choose this repository.
+3. Pick a session mode — **Interactive** to steer as it goes, **Plan** to approve a plan first, or **Autopilot** to let it run. The app puts each session in its own worktree and branch, so you do not need to switch branches yourself.
+4. Use the suggested prompt from Option 2 to implement the changes in `GalleryGrid.tsx`.
+5. Review the diff in the **Changes** view above the prompt box.
+6. Preview the result: run `npm run dev` and open `http://localhost:3000/gallery`. Some app versions offer an in-app terminal and browser preview; if yours does not, use your own terminal and browser.
+7. When you are happy with the change, select **Create PR**, then open it from the repository's **Pull requests** page or the **PR** button in the app.
 
-Feel free to complete that PR to see the change in your current branch.
+For a dedicated exercise on this app — extending the canvas extension this repo ships, and using agent merge — see [GitHub Copilot App](copilot-app.md).
 
 ## 🎯 Challenge Two: Review your work
 
