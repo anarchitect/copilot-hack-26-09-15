@@ -27,6 +27,7 @@ Optional guides:
 - [Customize Copilot Demo](demos/customize-copilot.md)
 - [Copilot Spaces Demo](demos/copilot-spaces.md)
 - [Cloud Agent Demo (original guide)](demos/cloud-agent.md)
+- [Stacked Pull Requests exercise](demos/engineering-practices-option-2.md#optional-exercise-stacked-pull-requests)
 
 ### Current Application Routes
 

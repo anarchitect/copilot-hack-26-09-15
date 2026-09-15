@@ -25,7 +25,7 @@ This folder contains step-by-step demo guides for learning and practicing GitHub
 | Engineering Practices | 30-40 minutes, plus 15 minutes for the bonus |
 | Customize Copilot (including optional Hooks) | 35-50 minutes |
 
-Hooks and Cloud Agent are optional extensions, not part of the recommended sequence. Allow extra time for any optional exercises, discussion, transitions, and breaks.
+Hooks, Cloud Agent, and Stacked Pull Requests are optional extensions, not part of the recommended sequence. Allow extra time for any optional exercises, discussion, transitions, and breaks.
 
 ### 1. Features Demo ([features-demo-option-2.md](features-demo-option-2.md))
 **Overview:**  
@@ -142,6 +142,16 @@ Experience GitHub Copilot as a cloud agent to accelerate building and enhancing 
 - Assign Copilot to GitHub issues  
 - Review Copilot-generated pull requests and session details  
 - Practice collaborative code review and iteration  
+
+---
+
+### 8. Stacked Pull Requests ([exercise](engineering-practices-option-2.md#optional-exercise-stacked-pull-requests))
+**Overview:**
+Practice a simple two-PR stack: extract the shared photo actions, then add Like/Unlike tooltips in a dependent PR. This standalone exercise uses local Copilot Chat, Git, and GitHub; no stacking tool is required.
+**Key Skills:**
+1. Split a refactor and a small feature into focused PRs.
+2. Choose the correct base branch and link dependencies.
+3. Review incremental diffs and merge in dependency order.
 
 ---
 
