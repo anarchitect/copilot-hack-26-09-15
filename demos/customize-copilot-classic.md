@@ -31,7 +31,7 @@ In IDE:
 
 In github.com:
 
-1. **Navigate to GitHub:** Go to [https://github.com/settings/billing](https://github.com/settings/billing)
+1. **Navigate to GitHub:** Go to [https://github.com/settings/billing/summary](https://github.com/settings/billing/summary)
 2. **Sign in:** Ensure you're logged into your GitHub account
 3. **View usage:** In **Metered usage**, select **Copilot**
 

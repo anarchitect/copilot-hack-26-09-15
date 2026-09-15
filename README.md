@@ -23,6 +23,7 @@ Optional guides:
 - [Hooks](demos/hooks.md)
 - [Stacked Pull Requests exercise](demos/stacked-pull-requests.md)
 - [Cloud Agent Demo](demos/cloud-agent.md)
+- [GitHub Copilot App](demos/copilot-app.md)
 - [Features Demo](demos/features-demo-classic.md)
 - [Engineering Practices Demo](demos/engineering-practices-classic.md)
 - [Customize Copilot Demo](demos/customize-copilot-classic.md)
@@ -57,7 +58,7 @@ After finishing the demo, don't forget this quick follow-up:
 
 ### Technical Requirements
 
-- **Node.js** v18 or newer
+- **Node.js** 18.18 or newer (Next.js 15 requires `^18.18.0 || ^19.8.0 || >=20`; Node 18.0–18.17 fails `next build`)
 - **npm** (or yarn, pnpm, bun)
 
 ### Quick Start with GitHub Codespaces
