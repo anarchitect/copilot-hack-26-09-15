@@ -52,12 +52,14 @@ This reduces context mixing and keeps each phase easier for the agent to follow.
 2. Hover over an existing chat suggestion
 3. Two items will appear on the bottom right of the suggestion:
    - **Model used**: The model that generated the suggestion
-   - **Credits used**: The number of credits used to generate the suggestion
+   - **Credits used**: The number of AI credits used to generate the suggestion
 
 **Example image:**
 ![Copilot Chat usage](/demos/images/credit-usage.png)
 
-We will be reviewing the credits in the next challenge, so make sure you know how to locate them.
+If you do not see that readout, it depends on your plan and VS Code version. Check your usage at **Settings → Billing** on GitHub instead, and note that Copilot Pro and Pro+ subscribers still on a legacy annual plan see **premium requests** rather than AI credits. Either figure works for what follows.
+
+We will be reviewing the credits in the next challenge, so make sure you know how to locate them. If neither view is available to you, compare the number of turns each run took and the size of the resulting diff — the point of the comparison is relative cost, not an exact number.
 
 ## 📝 Challenge Two: Context engineering
 
@@ -73,7 +75,7 @@ Below is an overview of the objective for the next four approaches. Each option 
   1. Open the Photo Gallery & Portfolio web app.
   2. Select **Upload** from the navigation bar.
   3. Scroll down to the **Tags (comma-separated)** input field.
-  4. Type a few characters like `we` and verify that a dropdown appears with suggested tags. If you type `w`, the suggestion `wedding` and `wildlife` should appear.
+  4. Type a few characters like `we` and verify that a dropdown appears with suggested tags. If you type `w`, the suggestions `wedding` and `wildlife` should appear.
 
 ### Bad habit 1: Too vague, not enough context, and no examples
 

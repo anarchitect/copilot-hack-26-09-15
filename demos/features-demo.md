@@ -19,7 +19,9 @@ More information on installation can be found in the [README](../README.md) file
 
 For this challenge, we will improve the photo detail modal behavior in [GalleryGrid](../src/components/gallery/GalleryGrid.tsx). The goal is to make the modal feel polished and easier to use.
 
-You have three options for how to implement this challenge. Feel free to get creative and use the option that best suits your workflow. You can also combine options if you like.
+You have two options for how to implement this challenge in your editor. Feel free to get creative and use the option that best suits your workflow. You can also combine options if you like.
+
+There is a third way — the desktop **GitHub Copilot app** — covered in its own guide, [GitHub Copilot App](copilot-app.md), which picks up this same task in Scenario A and then goes further into canvases and agent merge.
 
 **Definition of Done**
 - Go to the gallery page after running the app locally.
@@ -78,28 +80,6 @@ In GalleryGrid.tsx, improve the photo detail modal UX:
 Please keep the current UI and content unchanged.
 The same modal is opened from both Grid view and List view, so preserve and verify both layouts.
 ```
-
-### Option 3: Copilot App
-
-Use the GitHub Copilot app — a desktop app built on Copilot CLI that runs parallel agent sessions, each in its own git worktree and branch. This is optional; if you cannot install it, complete the challenge with Options 1 or 2.
-
-**Features to use**
-- [GitHub Copilot App](https://github.com/features/ai/github-app)
-- Model picker
-- Session modes
-- PR creation
-
-**Tips to complete:**
-
-1. Open the GitHub Copilot app and sign in.
-2. Next to **Sessions**, select `+`, then **Local folder or repository** and choose this repository.
-3. Pick a session mode — **Interactive** to steer as it goes, **Plan** to approve a plan first, or **Autopilot** to let it run. The app puts each session in its own worktree and branch, so you do not need to switch branches yourself.
-4. Use the suggested prompt from Option 2 to implement the changes in `GalleryGrid.tsx`.
-5. Review the diff in the **Changes** view above the prompt box.
-6. Preview the result: run `npm run dev` and open `http://localhost:3000/gallery`. Some app versions offer an in-app terminal and browser preview; if yours does not, use your own terminal and browser.
-7. When you are happy with the change, select **Create PR**, then open it from the repository's **Pull requests** page or the **PR** button in the app.
-
-For a dedicated exercise on this app — extending the canvas extension this repo ships, and using agent merge — see [GitHub Copilot App](copilot-app.md).
 
 ## 🎯 Challenge Two: Review your work
 

@@ -1,6 +1,6 @@
 # Exercise 1: Custom Instructions
 
-Part of the Customize Copilot Demo. Complete this exercise independently or follow the [full sequence](README.md#3-customize-copilot-demo).
+Part of the Customize Copilot Demo. Complete this exercise independently or follow the [full sequence](README.md#4-customize-copilot-demo).
 
 **Setup:** Open this repository in your editor and start a fresh Copilot Chat with access to repository files. Keep unrelated local changes separate.
 
@@ -54,4 +54,4 @@ Return exactly these sections:
 
 1. [ ] Completed the Custom Instructions exercise and captured before/after quality differences
 
-[Next: Custom Agent](custom-agent.md) · [Choose another exercise](README.md#3-customize-copilot-demo)
+[Next: Custom Agent](custom-agent.md) · [Choose another exercise](README.md#4-customize-copilot-demo)

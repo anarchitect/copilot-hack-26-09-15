@@ -1,6 +1,6 @@
 # Exercise 2: Custom Agent
 
-Part of the Customize Copilot Demo. Complete this exercise independently or follow the [full sequence](README.md#3-customize-copilot-demo).
+Part of the Customize Copilot Demo. Complete this exercise independently or follow the [full sequence](README.md#4-customize-copilot-demo).
 
 **Setup:** Open this repository in your editor and start a fresh Copilot Chat with access to repository files. Keep unrelated local changes separate.
 
@@ -8,7 +8,7 @@ Part of the Customize Copilot Demo. Complete this exercise independently or foll
 
 **Source:** [Agents](https://awesome-copilot.github.com/agents/)
 
-**Prerequisites:** Open Copilot Chat and confirm **Blueprint Mode** is available in the agent picker. This exercise uses the existing custom agent; it does not require the Custom Instructions exercise or implementation of the proposed feature.
+**Prerequisites:** Open Copilot Chat and confirm **Blueprint Mode** is available in the agent picker. If it is not listed, your VS Code build may predate custom agents loaded from `.github/agents/` — update VS Code, or read the template and run the exercise in Agent mode instead. This exercise uses the existing custom agent; it does not require the Custom Instructions exercise or implementation of the proposed feature.
 
 ## Steps
 
@@ -40,4 +40,4 @@ Include architecture decisions, guardrails, and a test matrix.
 
 1. [ ] Completed the Custom Agent exercise and compared mode behavior
 
-[Next: Custom Skill](custom-skill.md) · [Choose another exercise](README.md#3-customize-copilot-demo)
+[Next: Custom Skill](custom-skill.md) · [Choose another exercise](README.md#4-customize-copilot-demo)

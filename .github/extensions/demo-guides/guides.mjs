@@ -1,4 +1,4 @@
-// Step-by-step guidance for the four recommended demo challenges.
+// Step-by-step guidance for the demo guides. Add a guide by appending to GUIDES.
 //
 // Each guide maps to a file in /demos. Steps are intentionally concrete:
 // the exact file, the exact line region, the exact prompt, and a check that

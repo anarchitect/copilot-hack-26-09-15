@@ -22,6 +22,7 @@ This folder contains step-by-step demo guides for learning and practicing GitHub
 | Guide | Recommended allocation |
 | --- | --- |
 | Features | 20-30 minutes |
+| GitHub Copilot App | 20-40 minutes, depending on how many scenarios you run |
 | Engineering Practices | 30-40 minutes, plus 15 minutes for the bonus |
 | Customize Copilot (including optional Hooks) | 35-50 minutes |
 
@@ -29,16 +30,26 @@ Hooks, Cloud Agent, and Stacked Pull Requests are optional extensions, not part 
 
 ### 1. Features Demo ([features-demo.md](features-demo.md))
 **Overview:**  
-Start here with the recommended features challenge. Improve gallery modal behavior while trying Copilot, Copilot Chat, or the Copilot App.  
+Start here with the recommended features challenge. Improve gallery modal behavior using inline suggestions or Copilot Chat.  
 **Key Skills:**  
 - Use inline suggestions and Next Edit Suggestions
 - Plan and implement changes with Copilot Chat
-- Try the Copilot App workflow
 - Review AI-generated changes
 
 ---
 
-### 2. Engineering Practices Demo ([engineering-practices.md](engineering-practices.md))
+### 2. GitHub Copilot App ([copilot-app.md](copilot-app.md))
+**Overview:**  
+Take the Features Demo modal task into the desktop Copilot app, then go further: extend the canvas extension this repo already ships, and let agent merge land a pull request in your own fork. Three scenarios — the first carries on from Features Demo, the other two stand alone.  
+**Key Skills:**  
+- Run an agent session in its own worktree, review the diff, and open a PR from the app
+- Read a project-scoped canvas extension and understand its step and progress data model
+- Verify an agent's work rather than trusting its summary
+- Use agent merge on a deliberately blocked PR, and explain why the blocker had to be a conflict
+
+---
+
+### 3. Engineering Practices Demo ([engineering-practices.md](engineering-practices.md))
 **Overview:**  
 Practice context engineering as a repeatable system. Compare vague, overloaded, focused, and phase-separated approaches for the same upload tag autocomplete task.  
 **Key Skills:**  
@@ -49,9 +60,9 @@ Practice context engineering as a repeatable system. Compare vague, overloaded, 
 
 ---
 
-<a id="3-customize-copilot-demo"></a>
+<a id="4-customize-copilot-demo"></a>
 
-### 3. Customize Copilot Demo
+### 4. Customize Copilot Demo
 **Overview:**  
 Choose a standalone exercise or complete the three-exercise recommended customization sequence. Each exercise has its own Markdown file and retains the original prompts and references, with its own prerequisites and completion checks. No exercise requires output from another.
 
@@ -100,17 +111,7 @@ Use Copilot in GitHub to generate a standup report, create a feature issue, and 
 
 ---
 
-### 4. GitHub Copilot App ([copilot-app.md](copilot-app.md))
-**Overview:**  
-Two independent scenarios for the desktop Copilot app. Extend the canvas extension this repo already ships so it covers a demo it omits, and enable agent merge on a pull request in your own fork to watch it clear a merge conflict and land — never touching `main`.  
-**Key Skills:**  
-1. Find and read a project-scoped canvas extension, and understand its step/progress data model.
-2. Drive an agent to edit a real artifact, then verify the edit without trusting the agent's summary.
-3. Use agent merge on a deliberately blocked pull request, and explain why the blocker had to be a conflict.
-
----
-
-### 5. Features Demo ([features-demo-classic.md](features-demo-classic.md))
+### 4. Features Demo ([features-demo-classic.md](features-demo-classic.md))
 **Overview:**  
 Start here to explore Copilot’s core features. Learn how to use chat commands, generate code, and review AI suggestions.  
 **Key Skills:**  
@@ -122,7 +123,7 @@ Start here to explore Copilot’s core features. Learn how to use chat commands,
 
 ---
 
-### 6. Engineering Practices Demo ([engineering-practices-classic.md](engineering-practices-classic.md))
+### 5. Engineering Practices Demo ([engineering-practices-classic.md](engineering-practices-classic.md))
 **Overview:**  
 Dive deeper into professional Copilot tools for teams. Inspect Copilot interactions, export and import agent debug sessions, and explore system prompts for consistent code generation.
 **Key Skills:**  
@@ -133,7 +134,7 @@ Dive deeper into professional Copilot tools for teams. Inspect Copilot interacti
 
 ---
 
-### 7. Customize Copilot Demo ([customize-copilot-classic.md](customize-copilot-classic.md))
+### 6. Customize Copilot Demo ([customize-copilot-classic.md](customize-copilot-classic.md))
 **Overview:**  
 Learn advanced customization techniques. Monitor AI credit usage, switch models, use prompt files, experiment with custom agent modes, and set up custom instructions for your team.
 **Key Skills:**  
@@ -144,7 +145,7 @@ Learn advanced customization techniques. Monitor AI credit usage, switch models,
 
 ---
 
-### 8. Copilot Spaces Demo ([copilot-spaces.md](copilot-spaces.md))
+### 7. Copilot Spaces Demo ([copilot-spaces.md](copilot-spaces.md))
 **Overview:**  
 Collaborate in dedicated Copilot Spaces. Create a Space, set goals, add context files, and work together to implement new features with AI assistance.  
 **Key Skills:**  
@@ -155,7 +156,7 @@ Collaborate in dedicated Copilot Spaces. Create a Space, set goals, add context 
 
 ---
 
-### 9. Cloud Agent Demo (original guide) ([cloud-agent-classic.md](cloud-agent-classic.md))
+### 8. Cloud Agent Demo (original guide) ([cloud-agent-classic.md](cloud-agent-classic.md))
 **Overview:**  
 Experience GitHub Copilot as a cloud agent to accelerate building and enhancing features in your Photo Gallery & Portfolio application.  
 **Key Skills:**  
