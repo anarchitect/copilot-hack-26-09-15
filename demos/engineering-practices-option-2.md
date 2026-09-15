@@ -255,6 +255,18 @@ Explore how `react-dropzone` reports refused files and use that to surface the r
 
 A **stacked PR** targets another feature branch instead of the default branch. This lets you review a small foundation change separately from the change that uses it, without waiting for the first PR to merge.
 
+**Goal:** Ask Copilot to create the branches, implement the changes, commit, push, and open two linked PRs. You approve its tool calls and review the results—not manually create the stack.
+
+This optional exercise follows [Hooks](hooks-option-2.md). No output from the Hooks exercise is required.
+
+### Official documentation behind this exercise
+
+1. [GitHub: Agent mode in VS Code](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide#agent-mode) describes how Copilot edits files and runs terminal commands.
+2. [GitHub: Creating a pull request](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request?tool=cli) documents `gh pr create --base my-base-branch --head my-changed-branch`.
+3. [GitHub: Changing the base branch](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/changing-the-base-branch-of-a-pull-request) explains retargeting a PR and its effect on review comments.
+
+The gallery example below adapts these documented capabilities; it is not an official GitHub sample or a special stacked-PR slash command. The defining step is opening PR 2 with PR 1's branch as its base.
+
 ### Simple sample
 
 Use the existing `PhotoActions` component in [GalleryGrid](../src/components/gallery/GalleryGrid.tsx):
@@ -268,97 +280,131 @@ The dependency chain is `main → stack/photo-actions → stack/like-tooltips`. 
 
 ### Before you start
 
-1. Use your own fork or training repository with permission to push branches and open PRs. This exercise does not require the earlier challenges or Copilot cloud agent.
-2. Use Git locally and Copilot Chat in VS Code. Run the commands from your repository root with a clean working tree; commit or stash unrelated work first.
-3. Confirm `origin` points to your training repository. Replace `main` below if your default branch has another name.
-4. For the optional merge steps, the repository must allow **Create a merge commit**. If it only allows squash or rebase merges, complete the review exercise without merging; those methods require additional restacking.
+1. Open your own fork or training repository in VS Code. You need permission to push branches and create draft PRs there.
+2. Select **Agent** in Copilot Chat, with file-editing and terminal tools enabled. Review command approvals rather than enabling blanket approval. If Agent mode or terminal execution is unavailable under your organization's policy, stop: Ask/Plan mode alone cannot execute this exercise.
+3. Install Git, GitHub CLI (`gh`), and the project's Node.js/npm prerequisites. Sign in using `gh auth login` if needed and confirm with `gh auth status`. Never paste credentials into chat.
+4. Confirm `git remote -v` points `origin` to your training repository. Replace every `OWNER/REPO` below with that repository, and replace `main` if its default branch differs. Explicit `--repo` arguments prevent a fork's PRs from accidentally targeting upstream.
+5. Start with a clean working tree and unused exercise branch names. Commit or stash earlier exercise work first. Install project dependencies using the repository's setup instructions.
+6. For the optional merge steps, the repository must allow **Create a merge commit**. If it only allows squash or rebase merges, complete the review exercise without merging; those methods require additional restacking.
 
-### Step 1: Open the foundation PR
+### Step 1: Ask Copilot to create PR 1
 
-Create the first branch from the current remote default branch:
-
-```bash
-git fetch origin
-git switch -c stack/photo-actions origin/main
-```
-
-Attach `src/components/gallery/GalleryGrid.tsx` to a fresh Copilot Chat and use:
+Attach `src/components/gallery/GalleryGrid.tsx` to a fresh **Agent** chat. Replace `OWNER/REPO` before submitting:
 
 ```text
-Extract the existing PhotoActions component and its props interface from
+Create the FIRST PR of a two-PR stack in OWNER/REPO, using local Git
+and GitHub CLI. Execute the work, not just suggest commands.
+
+First confirm gh authentication, that origin points to OWNER/REPO,
+that the working tree is clean, and that main is the default branch.
+Stop and ask if any check fails or an exercise branch/PR already exists.
+Do not overwrite work, force-push, or target an upstream repository.
+
+Fetch origin and create stack/photo-actions from origin/main.
+Extract PhotoActions and its props interface from
 src/components/gallery/GalleryGrid.tsx into
-src/components/gallery/PhotoActions.tsx. Import it back into GalleryGrid.
-Preserve the existing buttons, handlers, accessibility attributes, styling,
-and both Grid and List layouts. Do not add features or dependencies.
-Do not commit, push, or open a PR; I will review and do those steps.
+src/components/gallery/PhotoActions.tsx and import it back.
+Preserve handlers, accessibility, styling, and both Grid and List views.
+Do not implement tooltips yet or add dependencies.
+
+Run npm run lint and npm run build. If either fails, report the failure
+and stop before publishing; do not fix unrelated issues.
+Review the diff for unintended changes and secrets, then commit only
+the extraction and push stack/photo-actions to origin.
+
+Use gh pr create with --repo OWNER/REPO --base main
+--head stack/photo-actions --draft, title "Extract shared photo actions",
+and a body describing scope, validation results, and its role as PR 1.
+Follow the repository's PR template if present.
+
+Return the actual PR URL and use gh pr view to verify its base, head,
+and open/draft state. Leave PR 1 UNMERGED for PR 2 to build on.
+Stop here; do not create PR 2 yet. If a tool or permission is unavailable,
+report the blocker rather than claiming the PR was created.
 ```
 
-1. Review the diff. The extraction should leave both existing `PhotoActions` call sites working with no behavior change.
-2. Run `npm run lint` and `npm run build`. Use `npm run dev` to check `/gallery` in Grid and List views: Like/Unlike and View Details should still work.
-3. Commit and publish only the extraction:
+1. Approve the intended tool calls and inspect the actual PR URL Copilot returns. A proposed command or draft description in chat is not a created PR.
+2. Review PR 1's **Files changed**: only the extraction should appear. Use `npm run dev` to check `/gallery` in Grid and List views: Like/Unlike and View Details should still work.
+3. Keep PR 1 open and unmerged. Continue only after its checks pass.
 
-```bash
-git add src/components/gallery/GalleryGrid.tsx src/components/gallery/PhotoActions.tsx
-git commit -m "refactor: extract shared photo actions"
-git push -u origin stack/photo-actions
-```
+### Step 2: Ask Copilot to stack PR 2 on PR 1
 
-4. In your repository on GitHub, open PR 1 titled **Extract shared photo actions**, with **base: main** and **compare: stack/photo-actions**. Leave it open and unmerged.
-
-### Step 2: Stack the second PR
-
-While still on `stack/photo-actions`, branch from it, not from `main`:
-
-```bash
-git switch -c stack/like-tooltips
-```
-
-Start a fresh chat, attach the extracted `PhotoActions.tsx`, and use:
+Start a fresh **Agent** chat, attach the extracted `PhotoActions.tsx`, and replace both `OWNER/REPO` and `PR1_URL`:
 
 ```text
-In src/components/gallery/PhotoActions.tsx, add a native title tooltip to
-the Like button that matches its existing dynamic aria-label:
+Create the SECOND PR of our stack in OWNER/REPO. PR 1 is PR1_URL.
+Use local Git and GitHub CLI to execute this, not just describe it.
+
+Verify origin and GitHub authentication, a clean working tree, and that
+PR 1 is OPEN and UNMERGED with base main and head stack/photo-actions.
+Stop if these checks fail or stack/like-tooltips or its PR already exists.
+
+Fetch origin and create stack/like-tooltips from
+origin/stack/photo-actions, NOT from main.
+In src/components/gallery/PhotoActions.tsx, add a native title tooltip
+to the Like button matching its existing dynamic aria-label:
 "Like <photo title>" when unliked and "Unlike <photo title>" when liked.
-Preserve aria-label, aria-pressed, behavior, and styling. Do not change
-Download or Share, add dependencies, or repeat the extraction from PR 1.
-Do not commit, push, or open a PR; I will review and do those steps.
+Preserve aria-label, aria-pressed, behavior, and styling.
+Do not change Download or Share, add dependencies, or redo the extraction.
+
+Run npm run lint and npm run build; stop before publishing on failure.
+Inspect the working diff for unintended changes and secrets, then commit
+only the tooltip change. Before pushing, verify
+git diff origin/stack/photo-actions...HEAD shows ONLY the tooltip addition
+in PhotoActions.tsx. If it does not, stop and report the discrepancy.
+Push stack/like-tooltips to origin only after this check passes.
+
+Create a draft PR with gh pr create --repo OWNER/REPO
+--base stack/photo-actions --head stack/like-tooltips --draft,
+title "Add Like/Unlike tooltips", and a body with the actual PR 1 URL,
+"Depends on PR 1; do not merge before it", and validation results.
+Follow the repository's PR template if present.
+Add a comment on PR 1 linking the actual PR 2 URL.
+
+Use gh pr view to verify BOTH PRs' actual base/head branches and open
+state, and gh pr diff to confirm PR 2 contains only the tooltip change.
+Return both URLs and the verification results.
+Do not merge either PR, enable auto-merge, force-push, or target upstream.
+If blocked, report the blocker; do not claim success or substitute two
+independent PRs targeting main.
 ```
 
-1. Run `npm run lint` and `npm run build` again. In `/gallery`, hover the Like button in both layouts, toggle it, then hover again and verify the tooltip updates. Confirm the like count and pressed state still update.
-2. Commit and publish only the tooltip addition:
+Approve the intended tool calls. In `/gallery`, hover the Like button in both layouts, toggle it, then move away and hover again to verify the tooltip updates. Confirm the like count and pressed state still update.
+
+### Step 3: Prove that Copilot created a stack
+
+Independently run these read-only checks from your repository root, replacing `OWNER/REPO`. Do not rely only on Copilot's summary.
 
 ```bash
-git add src/components/gallery/PhotoActions.tsx
-git commit -m "feat: add like action tooltips"
-git push -u origin stack/like-tooltips
+gh pr view stack/photo-actions --repo OWNER/REPO --json url,baseRefName,headRefName,state,isDraft,mergedAt
+gh pr view stack/like-tooltips --repo OWNER/REPO --json url,baseRefName,headRefName,state,isDraft,mergedAt
+gh pr diff stack/like-tooltips --repo OWNER/REPO
 ```
 
-3. Open PR 2 titled **Add Like/Unlike tooltips**, explicitly choosing **base: stack/photo-actions** and **compare: stack/like-tooltips**. Do not accept `main` as its initial base.
-4. Put **Depends on PR 1: &lt;actual PR 1 URL&gt;. Review after PR 1; do not merge yet.** in its description, replacing the placeholder with the actual link. Link PR 2 from PR 1 as well.
-
-### Step 3: Review the stack
-
-1. Review PR 1 against `main`: only the behavior-preserving extraction should appear.
-2. Review PR 2 against `stack/photo-actions`: only the tooltip change should appear. Locally, `git diff stack/photo-actions...stack/like-tooltips` should show the same focused change.
-3. If PR 2 also shows the extraction, check its base branch. Use GitHub's [change base branch workflow](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/changing-the-base-branch-of-a-pull-request) to correct it.
-4. If review changes PR 1, bring the updated parent branch into PR 2 before revalidating. For this simple merge-based workflow, check out `stack/like-tooltips`, fetch, merge `origin/stack/photo-actions`, resolve any conflicts, rerun the checks, and push. Do not merge PR 2 into PR 1.
+1. PR 1 must report base `main`, head `stack/photo-actions`, state `OPEN`, `isDraft: true`, and `mergedAt: null`.
+2. PR 2 must report base `stack/photo-actions`, head `stack/like-tooltips`, state `OPEN`, `isDraft: true`, and `mergedAt: null`. **If both bases are `main`, this exercise has failed.**
+3. PR 2's diff must contain only the tooltip addition in `src/components/gallery/PhotoActions.tsx`, not the extraction. Check both PRs' links to each other.
+4. Ask Copilot to fetch origin and run `git merge-base --is-ancestor origin/stack/photo-actions origin/stack/like-tooltips`. Exit code `0` confirms the parent branch tip is in the child's history; nonzero requires investigation. This complements the GitHub base/head check.
+5. If PR 2's base is wrong, ask Copilot to correct it using the documented base-change workflow and repeat these checks. If review updates PR 1, ask Copilot to merge `origin/stack/photo-actions` into `stack/like-tooltips`, resolve conflicts with your review, rerun validation, and push. Never merge PR 2 into PR 1.
 
 ### Step 4: Merge in dependency order (optional)
 
-1. Merge PR 1 into `main` using **Create a merge commit**, not squash or rebase. Keep its branch until PR 2 has been retargeted; if automatic branch deletion is enabled, verify PR 2's base after the merge.
+1. After review, mark PR 1 ready and merge it into `main` using **Create a merge commit**, not squash or rebase. Keep its branch until PR 2 has been retargeted; if automatic branch deletion is enabled, verify PR 2's base after the merge.
 2. In PR 2, change the base to `main` if GitHub has not already done so. Verify **Files changed** still contains only the tooltip addition. Changing the base can make review comments outdated, so review the diff again.
-3. Re-run required checks against the new base and obtain any required approval before merging PR 2 into `main`. Never merge it while its base is still `stack/photo-actions`.
+3. Mark PR 2 ready, re-run required checks against the new base, and obtain any required approval before merging PR 2 into `main`. Never merge it while its base is still `stack/photo-actions`.
 4. Delete the two training branches only after both PRs are merged and neither is the base of an open PR.
 
 **Squash/rebase caution:** Those merge methods rewrite the parent's commits. Merely changing PR 2's base may then show PR 1's changes again. Stop and restack only PR 2's commits onto the updated `main` before continuing; do not merge a duplicated diff. The merge-commit path above avoids that extra operation.
 
 ### Completion checks
 
-1. Two linked PRs exist, with the base/head pairs shown in the sample table before merging.
+1. Copilot created two linked PRs, with actual URLs and the verified base/head pairs shown in the sample table before merging.
 2. PR 1 works independently; PR 2 includes PR 1's code but shows only its own change for review.
 3. Grid and List views retain working Like/Unlike behavior, with updated native tooltips on PR 2.
 4. Lint/build results and manual checks are recorded in each PR; any pre-existing failures are distinguished from new failures.
 5. You can explain why PR 2 initially targets PR 1's branch and why PR 1 must merge first.
+
+**Verification boundary:** The official references establish the Agent and PR operations used here; they do not guarantee a particular model's output. An end-to-end exercise pass requires the two real PRs, branch/diff evidence, and application checks above. Reviewing this guide or checking CLI syntax alone does not establish that pass.
 
 ## Anti-Patterns to Avoid
 
