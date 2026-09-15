@@ -37,7 +37,9 @@ If you cannot install the app, each scenario ends with a fallback that keeps the
 
 # Scenario A — Your first session
 
-This is [Challenge One of the Features Demo](features-demo.md#-challenge-one-improve-gallery-modal-ux) done in the app. If you already finished it with inline suggestions or Copilot Chat, do it again here on a clean branch — the point is the app's session model, not the code.
+This is [Challenge One of the Features Demo](features-demo.md#-challenge-one-improve-gallery-modal-ux) done in the app. If you already finished it with inline suggestions or Copilot Chat, do it again here — the point is the app's session model, not the code.
+
+**First make sure the defects are still there.** The app cuts each session's worktree from your current commit, so if you already committed the Features fix, the session inherits it, there is nothing to fix, and checks 2–4 below pass without the agent doing anything. Either `git stash` your Features work or start from a commit that still has the bug.
 
 **The task:** the photo detail modal in [GalleryGrid](../src/components/gallery/GalleryGrid.tsx) does not close on Escape, does not close when you click the backdrop, and lets the page scroll behind it. Fix all three, in both Grid and List views.
 
@@ -51,6 +53,8 @@ This is [Challenge One of the Features Demo](features-demo.md#-challenge-one-imp
 3. Leave the model on **Auto** unless you want to compare models.
 
 You do not need to create or switch branches. Each session gets its own git worktree and branch.
+
+**Confirm your baseline before you prompt anything.** Run `npm run dev`, open `http://localhost:3000/gallery`, click **View Details** on any photo, and check that Escape does nothing, clicking the backdrop does nothing, and the page still scrolls behind the modal. If any of those already work, you are starting from a fixed commit — go back and re-read the note above.
 
 ## Step 2: Describe the change
 

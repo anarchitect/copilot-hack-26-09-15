@@ -8,7 +8,7 @@ Part of the Customize Copilot Demo. Complete this exercise independently or foll
 
 **Source:** [Agents](https://awesome-copilot.github.com/agents/)
 
-**Prerequisites:** Open Copilot Chat and confirm **Blueprint Mode** is available in the agent picker. This exercise uses the existing custom agent; it does not require the Custom Instructions exercise or implementation of the proposed feature.
+**Prerequisites:** Open Copilot Chat and confirm **Blueprint Mode** is available in the agent picker. If it is not listed, your VS Code build may predate custom agents loaded from `.github/agents/` — update VS Code, or read the template and run the exercise in Agent mode instead. This exercise uses the existing custom agent; it does not require the Custom Instructions exercise or implementation of the proposed feature.
 
 ## Steps
 

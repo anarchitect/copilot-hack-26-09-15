@@ -1,5 +1,5 @@
 // Extension: demo-guides
-// Step-by-step walkthroughs for the recommended demo challenges.
+// Step-by-step walkthroughs for the demo guides listed in guides.mjs.
 //
 // Content lives in guides.mjs, HTML in renderer.mjs. This file is wiring:
 // one loopback server per canvas instance, durable progress storage, and the
@@ -151,7 +151,7 @@ await joinSession({
             id: "demo-guides",
             displayName: "Demo guides",
             description:
-                "Step-by-step walkthroughs for the four recommended demo challenges (Features, Engineering Practices, Customize Copilot, Cloud Agent) with per-step progress tracking.",
+                "Step-by-step walkthroughs for the demo guides (Features, Engineering Practices, Customize Copilot, Cloud Agent) with per-step progress tracking.",
             inputSchema: {
                 type: "object",
                 properties: {

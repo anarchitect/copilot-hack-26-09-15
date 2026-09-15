@@ -1,4 +1,4 @@
-# Exercise 4: Hooks
+# Hooks
 
 Optional extension to the Customize Copilot Demo. Complete this exercise independently or explore the [optional guides](README.md#optional-demo-sequence--descriptions).
 
