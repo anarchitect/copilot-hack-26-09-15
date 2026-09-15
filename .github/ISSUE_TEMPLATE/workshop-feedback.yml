@@ -16,9 +16,9 @@ body:
       options:
         - Features Demo
         - Engineering Practices
-        - Customize Copilot: Custom Instructions
-        - Customize Copilot: Custom Agent
-        - Customize Copilot: Custom Skill
+        - "Customize Copilot: Custom Instructions"
+        - "Customize Copilot: Custom Agent"
+        - "Customize Copilot: Custom Skill"
         - Hooks
         - Stacked Pull Requests
         - Cloud Agent
