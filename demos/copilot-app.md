@@ -1,31 +1,103 @@
 # GitHub Copilot App
 
-**Optional exercise.** Two independent scenarios for the **GitHub Copilot app** (desktop) — the standalone app built on Copilot CLI that runs parallel agent sessions, each in its own git worktree and branch. Do either alone; **Scenario B does not depend on Scenario A.**
+**Follows [Features Demo](features-demo.md).** The GitHub Copilot app is a desktop app built on Copilot CLI that runs parallel agent sessions, each in its own git worktree and branch. This guide takes you from your first session through to letting an agent land a pull request on its own.
 
-- **Scenario A — Canvas:** extend a canvas extension that already ships in this repo so it covers a demo it currently omits.
-- **Scenario B — Agent merge:** enable **agent merge** on a real pull request in your own fork and watch it clear a blocker and merge — safely, never touching `main`.
+Three scenarios, in order:
 
-> **The part that is easy to get wrong.** Two surfaces here resolve **only inside the app at runtime**: the canvas SDK module `@github/copilot-sdk/extension` is **not** an npm dependency, so `npm ci` never installs it and `node extension.mjs` will fail with `ERR_MODULE_NOT_FOUND`. Agent merge's control lives in the app UI. Every learner-verifiable check below is written to pass or fail from the **file system and `gh`**, independent of the app's chrome.
+| | Scenario | You will |
+| --- | --- | --- |
+| A | **First session** | Finish the Features Demo modal task in the app, review the diff, open a PR |
+| B | **Canvas** | Extend a canvas extension this repo already ships so it covers a demo it omits |
+| C | **Agent merge** | Let the app clear a blocker and merge a PR in your own fork — never touching `main` |
+
+Scenario A is the on-ramp and carries the task over from Features Demo. **B and C are independent** — you can do either without A, and C does not need B.
+
+> **The part that is easy to get wrong.** Two surfaces here resolve **only inside the app at runtime**: the canvas SDK module `@github/copilot-sdk/extension` is **not** an npm dependency, so `npm ci` never installs it and `node extension.mjs` will fail with `ERR_MODULE_NOT_FOUND`. Agent merge's control lives in the app UI. Every learner-verifiable check below is written to pass or fail from the **file system, the running app, and `gh`** — independent of the app's chrome.
 
 ## Official documentation
 
 1. [GitHub Copilot app](https://docs.github.com/en/copilot/concepts/agents/github-copilot-app) — built on Copilot CLI; macOS/Linux/Windows; **Interactive / Plan / Autopilot** modes; parallel sessions each with a dedicated git worktree and branch.
-2. [Working with canvas extensions](https://docs.github.com/en/copilot/how-tos/github-copilot-app/working-with-canvas-extensions) — what a canvas is, project (`.github/extensions`) vs user (`~/.copilot/extensions`) scope, discovery, and `/create-canvas`.
-3. [Managing issues and pull requests](https://docs.github.com/en/copilot/how-tos/github-copilot-app/managing-issues-and-pull-requests) — the **Merging a pull request** section documents **agent merge**.
-4. [Built-in skills](https://docs.github.com/en/copilot/reference/github-copilot-app-reference/built-in-skills) — `agent-merge`, `create-canvas`, `pr-stack`, `orchestrate`.
+2. [Getting started with the GitHub Copilot app](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app) — install, connect a repository, make a first change, create a PR.
+3. [Working with canvas extensions](https://docs.github.com/en/copilot/how-tos/github-copilot-app/working-with-canvas-extensions) — what a canvas is, project (`.github/extensions`) vs user (`~/.copilot/extensions`) scope, discovery, and `/create-canvas`.
+4. [Managing issues and pull requests](https://docs.github.com/en/copilot/how-tos/github-copilot-app/managing-issues-and-pull-requests) — the **Merging a pull request** section documents **agent merge**.
+5. [Built-in skills](https://docs.github.com/en/copilot/reference/github-copilot-app-reference/built-in-skills) — `agent-merge`, `create-canvas`, `pr-stack`, `orchestrate`.
 
-On Copilot Business or Enterprise, the **GitHub Copilot app** policy must be enabled for your organisation, or neither scenario's app step is available. It is on by default and is separate from the Copilot CLI policy.
+On Copilot Business or Enterprise, the **GitHub Copilot app** policy must be enabled for your organisation, or none of the app steps are available. It is on by default and is separate from the Copilot CLI policy.
 
 ## Before you start
 
-1. Install the GitHub Copilot app and sign in. Open it once and confirm you can start a session on a **Local folder or repository**.
+1. Install the GitHub Copilot app from the [download page](https://github.com/features/ai/github-app) and sign in.
 2. Have this repository cloned, plus Node 18.18+ and GitHub CLI 2.x on `PATH`. `npm ci` should already pass from the repo root.
-3. For Scenario B you need a **fork** you can push to. Do not work in the shared upstream.
+3. For Scenario C you need a **fork** you can push to. Do not work in the shared upstream.
 4. Run `gh auth login` if needed. Never paste credentials into chat.
+
+If you cannot install the app, each scenario ends with a fallback that keeps the same verifiable outcome.
 
 ---
 
-# Scenario A — Canvas
+# Scenario A — Your first session
+
+This is [Challenge One of the Features Demo](features-demo.md#-challenge-one-improve-gallery-modal-ux) done in the app. If you already finished it with inline suggestions or Copilot Chat, do it again here on a clean branch — the point is the app's session model, not the code.
+
+**The task:** the photo detail modal in [GalleryGrid](../src/components/gallery/GalleryGrid.tsx) does not close on Escape, does not close when you click the backdrop, and lets the page scroll behind it. Fix all three, in both Grid and List views.
+
+## Step 1: Start a session
+
+1. Next to **Sessions**, select **+**, then **Local folder or repository**, and choose this repository.
+2. Pick a session mode from the dropdown below the prompt field:
+   - **Interactive** — you steer as it goes.
+   - **Plan** — the agent proposes a plan and you approve it first.
+   - **Autopilot** — it runs to completion.
+3. Leave the model on **Auto** unless you want to compare models.
+
+You do not need to create or switch branches. Each session gets its own git worktree and branch.
+
+## Step 2: Describe the change
+
+```text
+In src/components/gallery/GalleryGrid.tsx, fix the photo detail modal:
+close on Escape, close on backdrop click, and stop the page scrolling
+while it is open.
+
+The same modal opens from Grid view and List view - both must work.
+Change behaviour only: leave the modal content, card layouts, Search,
+Filters and the Grid/List toggle exactly as they are.
+
+Run npm run lint and npm run build, then tell me what you changed.
+```
+
+Why the prompt says what it says:
+
+- **Naming the file and the three behaviours** gets a tighter diff than "improve the modal UX". The agent does not have to guess what "polished" means.
+- **"Grid view and List view"** is the one thing people miss. The modal is opened from two places, and a fix applied to one layout looks complete until you switch views.
+- **"Change behaviour only"** stops scope creep into restyling, which is what turns a reviewable diff into an unreviewable one.
+- **Lint and build** catch an unused import or a stray hook dependency before you see it in review.
+
+## Step 3: Review, preview, and open a PR
+
+1. Open the **Changes** view above the prompt box and read the diff. It should touch `GalleryGrid.tsx` and nothing else.
+2. Run `npm run dev` and open `http://localhost:3000/gallery`. Some app versions offer an in-app terminal and browser preview; if yours does not, use your own terminal and browser — the checks are identical.
+3. Work the Definition of Done in **both** layouts.
+4. Select **Create PR** when you are happy with it. Open it from the **PR** button in the app, or the repository's **Pull requests** page.
+
+| # | Check | Pass condition |
+| --- | --- | --- |
+| 1 | Diff scope | Only `GalleryGrid.tsx` changed |
+| 2 | Escape | Closes the modal in Grid **and** List view |
+| 3 | Backdrop click | Clicking outside the modal content closes it, in both views |
+| 4 | Scroll lock | The page behind the modal cannot scroll while it is open |
+| 5 | Nothing else broke | Search, Filters and the Grid/List toggle still work |
+| 6 | Quality | `npm run lint` and `npm run build` both pass |
+
+If a check fails, reply in the same session naming the specific gap — "Escape works in Grid but not List" — and let it iterate. That is the loop the app is built for.
+
+## Fallback
+
+Do the same task in VS Code with Copilot Chat in Agent mode, or in Copilot CLI, using the same prompt. The verification table is unchanged. You lose the session and PR surface, not the exercise.
+
+---
+
+# Scenario B — Canvas
 
 A **canvas** is a shared, interactive surface where you and the agent work on the same artifact — the agent updates it while it works, and you edit on that same surface. Canvases open in the app's right side panel.
 
@@ -114,7 +186,7 @@ To feel canvas scaffolding without editing this one, start an app session and ru
 
 ---
 
-# Scenario B — Agent merge
+# Scenario C — Agent merge
 
 From the docs: *"When you want to merge a pull request, you can enable agent merge at the top of the app. Agent merge will prompt the workspace's Copilot session to read your pull request, fix what is blocking it, and merge it as soon as GitHub allows. It runs in the background, survives app restarts, and turns itself off once your pull request is merged."*
 
@@ -250,24 +322,27 @@ Step 3's pass conditions still apply — the only difference is that you authore
 
 ## Completion checks
 
-1. You found the `demo-guides` canvas and can say what it tracks and where its progress lives.
-2. `guides.mjs` carries a fifth guide; both `node` checks pass; the Hooks tab renders and `mark_step` accepts a `hooks-` id that previously threw.
-3. A pull request in your fork went from `CONFLICTING` to `MERGED` without you resolving the conflict, targeting a throwaway base branch.
-4. Both scenarios are torn down: canvas progress reset or reverted, demo branches deleted.
-5. You can explain why a merge conflict was the right blocker here and a failing check was not.
+1. **A** — the modal closes on Escape and on backdrop click, and the page cannot scroll behind it, in **both** Grid and List views. Lint and build pass, and the diff touches only `GalleryGrid.tsx`.
+2. **B** — you found the `demo-guides` canvas and can say what it tracks and where its progress lives.
+3. **B** — `guides.mjs` carries a fifth guide; both `node` checks pass; the Hooks tab renders and `mark_step` accepts a `hooks-` id that previously threw.
+4. **C** — a pull request in your fork went from `CONFLICTING` to `MERGED` without you resolving the conflict, targeting a throwaway base branch.
+5. Everything is torn down: canvas progress reset or reverted, demo branches deleted.
+6. You can explain why a merge conflict was the right blocker here and a failing check was not.
 
 ## Verification boundary
 
-What is proven: the `guides.mjs` edit (via `node --check` and the assertion, both of which fail on an unedited repo), and the PR reaching `MERGED` on the right base with a resolution commit you did not author (via `gh` and `git log`). What is **not** guaranteed: the app's UI wording. **Customize**, **Installed**, **New session** and the agent merge control at the top of a pull request match the docs at time of writing, but labels move between versions — follow the on-screen equivalent. Reading this guide proves nothing; the artifact and the merged PR do.
+What is proven: the modal behaviour (you exercise it yourself in both layouts), the `guides.mjs` edit (via `node --check` and the assertion, both of which fail on an unedited repo), and the PR reaching `MERGED` on the right base with a resolution commit you did not author (via `gh` and `git log`). What is **not** guaranteed: the app's UI wording. **Sessions**, **Local folder or repository**, **Changes**, **Create PR**, **Customize**, **Installed** and the agent merge control at the top of a pull request match the docs at time of writing, but labels move between versions — follow the on-screen equivalent. Reading this guide proves nothing; the running app, the artifact and the merged PR do.
 
 ## Related
 
+- [Features Demo](features-demo.md) is where Scenario A's task comes from. Options 1 and 2 there do the same fix with inline suggestions and Copilot Chat, which is worth comparing against the app's session model.
 - [Stacked Pull Requests](stacked-pull-requests.md) builds a stack with the `gh stack` CLI extension. The app offers a built-in `pr-stack` skill for the same job — *"create and manage a stack of dependent pull requests, with one child session for each layer"* — worth trying once you have done it the CLI way.
-- [Hooks](hooks.md) is the guide you add to the canvas in Scenario A.
+- [Hooks](hooks.md) is the guide you add to the canvas in Scenario B.
 
 ## Anti-patterns to avoid
 
-1. Believing the agent added the canvas guide without running the two `node` checks.
-2. Pointing the Scenario B pull request at `main` instead of the throwaway base branch.
-3. Hand-resolving the conflict, which skips the only thing Scenario B teaches.
-4. Editing `extension.mjs` or `renderer.mjs` when `guides.mjs` is the only file that needs to change.
+1. Fixing the modal in Grid view and calling it done without switching to List view.
+2. Believing the agent added the canvas guide without running the two `node` checks.
+3. Pointing the Scenario C pull request at `main` instead of the throwaway base branch.
+4. Hand-resolving the conflict, which skips the only thing Scenario C teaches.
+5. Editing `extension.mjs` or `renderer.mjs` when `guides.mjs` is the only file that needs to change.
