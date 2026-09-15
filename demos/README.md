@@ -15,7 +15,7 @@ This folder contains step-by-step demo guides for learning and practicing GitHub
 - `/gallery` has Search, Filters, and working Grid/List controls. Gallery exercises must preserve both layouts.
 - Admin **Recent Galleries** has no View All link because `/admin/galleries` does not exist.
 
-## Recommended Demo Sequence & Descriptions (Option 2)
+## Recommended Demo Sequence & Descriptions
 
 ### Agenda planning
 
@@ -28,9 +28,9 @@ This folder contains step-by-step demo guides for learning and practicing GitHub
 
 The core exercises take about 100 minutes. Reserve 2.5-3 hours for discussion, cloud-agent execution, transitions, and a short break.
 
-### 1. Features Demo (Option 2) ([features-demo-option-2.md](features-demo-option-2.md))
+### 1. Features Demo ([features-demo-option-2.md](features-demo-option-2.md))
 **Overview:**  
-Start here with the latest recommended features challenge. Improve gallery modal behavior while trying Copilot, Copilot Chat, or the Copilot App.  
+Start here with the recommended features challenge. Improve gallery modal behavior while trying Copilot, Copilot Chat, or the Copilot App.  
 **Key Skills:**  
 - Use inline suggestions and Next Edit Suggestions
 - Plan and implement changes with Copilot Chat
@@ -39,7 +39,7 @@ Start here with the latest recommended features challenge. Improve gallery modal
 
 ---
 
-### 2. Engineering Practices Demo (Option 2) ([engineering-practices-option-2.md](engineering-practices-option-2.md))
+### 2. Engineering Practices Demo ([engineering-practices-option-2.md](engineering-practices-option-2.md))
 **Overview:**  
 Practice context engineering as a repeatable system. Compare vague, overloaded, focused, and phase-separated approaches for the same upload tag autocomplete task.  
 **Key Skills:**  
@@ -50,7 +50,9 @@ Practice context engineering as a repeatable system. Compare vague, overloaded, 
 
 ---
 
-### 3. Customize Copilot Demo (Option 2)
+<a id="3-customize-copilot-demo-option-2"></a>
+
+### 3. Customize Copilot Demo
 **Overview:**  
 Choose a standalone exercise or complete the full customization sequence. Each exercise has its own Markdown file and retains the original prompts and references, with its own prerequisites and completion checks. No exercise requires output from another.
 
@@ -67,7 +69,7 @@ Choose a standalone exercise or complete the full customization sequence. Each e
 
 ---
 
-### 4. Cloud Agent Demo (Option 2) ([cloud-agent-option-2.md](cloud-agent-option-2.md))
+### 4. Cloud Agent Demo ([cloud-agent-option-2.md](cloud-agent-option-2.md))
 **Overview:**  
 Use Copilot in GitHub to generate a standup report, create a feature issue, and review cloud agent output.  
 **Key Skills:**  
@@ -78,7 +80,7 @@ Use Copilot in GitHub to generate a standup report, create a feature issue, and 
 
 ---
 
-## Original Demo Sequence & Descriptions
+## Optional Demo Sequence & Descriptions
 
 ### 1. Features Demo ([features-demo.md](features-demo.md))
 **Overview:**  
@@ -137,7 +139,7 @@ Experience GitHub Copilot as a cloud agent to accelerate building and enhancing 
 
 ## How to Use These Demos
 
-1. Start with the recommended Option 2 sequence unless your instructor directs you to the original guides.
+1. Start with the recommended sequence unless your instructor directs you to the optional guides.
 2. Follow the instructions and prompts in each file.
 3. Mark off completion checklists as you progress.
 4. Share your learnings and results with your team.
