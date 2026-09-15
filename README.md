@@ -12,17 +12,13 @@ A professional photo gallery and portfolio application built with Next.js 15, Ty
 
 Latest recommended guides (Option 2):
 
-- [Features Demo (Option 2)](demos/features-demo-option-2.md)
-- [Engineering Practices Demo (Option 2)](demos/engineering-practices-option-2.md)
-- [Customize Copilot Exercises (Option 2)](demos/README.md#3-customize-copilot-demo-option-2)
-- [Cloud Agent Demo (Option 2)](demos/cloud-agent-option-2.md)
-
-The Customize Copilot demo is split into individual exercise files:
-
-1. [Custom Instructions](demos/custom-instructions-option-2.md)
-2. [Custom Agent](demos/custom-agent-option-2.md)
-3. [Custom Skill](demos/custom-skill-option-2.md)
-4. [Hooks](demos/hooks-option-2.md)
+1. [Features Demo (Option 2)](demos/features-demo-option-2.md)
+2. [Engineering Practices Demo (Option 2)](demos/engineering-practices-option-2.md)
+3. [Custom Instructions](demos/custom-instructions-option-2.md)
+4. [Custom Agent](demos/custom-agent-option-2.md)
+5. [Custom Skill](demos/custom-skill-option-2.md)
+6. [Hooks](demos/hooks-option-2.md)
+7. [Cloud Agent Demo (Option 2)](demos/cloud-agent-option-2.md)
 
 Original guides:
 
