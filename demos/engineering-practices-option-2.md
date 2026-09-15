@@ -398,40 +398,62 @@ independent PRs targeting main, or base-chained PRs with a null stack.
 
 Approve the intended tool calls. In `/gallery`, hover the Like button in both layouts, toggle it, then move away and hover again to verify the tooltip updates. Confirm the like count and pressed state still update.
 
-### Step 3: Prove that Copilot created a stack
+### Step 3: Prove that Copilot created a real stack
 
-Independently run these read-only checks from your repository root, replacing `OWNER/REPO`. Do not rely only on Copilot's summary.
+Base-branch chaining alone does not prove a stack exists. Run these read-only checks from your repository root, replacing `OWNER/REPO`. Do not rely only on Copilot's summary.
 
 ```bash
-gh pr view stack/photo-actions --repo OWNER/REPO --json url,baseRefName,headRefName,state,isDraft,mergedAt
-gh pr view stack/like-tooltips --repo OWNER/REPO --json url,baseRefName,headRefName,state,isDraft,mergedAt
+# 1. Branch topology
+gh pr view stack/photo-actions --repo OWNER/REPO --json url,number,baseRefName,headRefName,state,isDraft,mergedAt
+gh pr view stack/like-tooltips --repo OWNER/REPO --json url,number,baseRefName,headRefName,state,isDraft,mergedAt
+
+# 2. The stack object itself — this is the check that matters
+gh stack view
+
+gh api graphql -f query='
+query($o:String!,$r:String!,$bottom:Int!,$top:Int!){
+  repository(owner:$o,name:$r){
+    bottom: pullRequest(number:$bottom){ baseRefName stack { number size baseRefName } }
+    top:    pullRequest(number:$top){    baseRefName stack { number size baseRefName } }
+  }
+}' -F o=OWNER -F r=REPO -F bottom=BOTTOM_PR_NUMBER -F top=TOP_PR_NUMBER
+
+# 3. Layer isolation
 gh pr diff stack/like-tooltips --repo OWNER/REPO
 ```
 
-1. PR 1 must report base `main`, head `stack/photo-actions`, state `OPEN`, `isDraft: true`, and `mergedAt: null`.
-2. PR 2 must report base `stack/photo-actions`, head `stack/like-tooltips`, state `OPEN`, `isDraft: true`, and `mergedAt: null`. **If both bases are `main`, this exercise has failed.**
-3. PR 2's diff must contain only the tooltip addition in `src/components/gallery/PhotoActions.tsx`, not the extraction. Check both PRs' links to each other.
-4. Ask Copilot to fetch origin and run `git merge-base --is-ancestor origin/stack/photo-actions origin/stack/like-tooltips`. Exit code `0` confirms the parent branch tip is in the child's history; nonzero requires investigation. This complements the GitHub base/head check.
-5. If PR 2's base is wrong, ask Copilot to correct it using the documented base-change workflow and repeat these checks. If review updates PR 1, ask Copilot to merge `origin/stack/photo-actions` into `stack/like-tooltips`, resolve conflicts with your review, rerun validation, and push. Never merge PR 2 into PR 1.
+1. The bottom PR must report base `main`, head `stack/photo-actions`, state `OPEN`, `isDraft: true`, and `mergedAt: null`.
+2. The top PR must report base `stack/photo-actions`, head `stack/like-tooltips`, state `OPEN`, `isDraft: true`, and `mergedAt: null`. **If both bases are `main`, this exercise has failed.**
+3. `gh stack view` must draw both branches in one stack, bottom to top, above the trunk. If it prints `current branch ... is not part of a stack`, the exercise has failed even when step 1 passes.
+4. Both PRs must return the **same non-null** `stack` object, with `size: 2` and `baseRefName: main`. **If `stack` is `null` on either PR, the exercise has failed**: the base branches were chained by hand and GitHub never registered a stack. Fix it without recreating the PRs by running `gh stack link BOTTOM_PR_NUMBER TOP_PR_NUMBER`, then re-run this check.
+5. On github.com, open the top PR. It must show the stack icon with a layer indicator such as `2/2` near the title, a stack map in the merge box, and a timeline entry reading `added this pull request to stack #N`. Absent stack UI means no stack object.
+6. The top PR's diff must contain only the tooltip addition in `src/components/gallery/PhotoActions.tsx`, not the extraction.
+7. Optionally confirm the branch ancestry with `git merge-base --is-ancestor origin/stack/photo-actions origin/stack/like-tooltips`. Exit code `0` is expected. This complements, and does not replace, the stack-object check.
+
+If review changes the bottom layer, run `gh stack sync` and then `gh stack rebase` to cascade the update through the layers above, rather than merging one exercise branch into the other by hand.
 
 ### Step 4: Merge in dependency order (optional)
 
-1. After review, mark PR 1 ready and merge it into `main` using **Create a merge commit**, not squash or rebase. Keep its branch until PR 2 has been retargeted; if automatic branch deletion is enabled, verify PR 2's base after the merge.
-2. In PR 2, change the base to `main` if GitHub has not already done so. Verify **Files changed** still contains only the tooltip addition. Changing the base can make review comments outdated, so review the diff again.
-3. Mark PR 2 ready, re-run required checks against the new base, and obtain any required approval before merging PR 2 into `main`. Never merge it while its base is still `stack/photo-actions`.
-4. Delete the two training branches only after both PRs are merged and neither is the base of an open PR.
+Pull requests in a stack merge bottom-up, and GitHub handles the retargeting for you.
 
-**Squash/rebase caution:** Those merge methods rewrite the parent's commits. Merely changing PR 2's base may then show PR 1's changes again. Stop and restack only PR 2's commits onto the updated `main` before continuing; do not merge a duplicated diff. The merge-commit path above avoids that extra operation.
+1. After review, mark the bottom PR ready and merge it. GitHub automatically rebases the remaining branch and re-targets the top PR to `main`. You do not need to change the base by hand.
+2. Confirm the top PR's **Files changed** still contains only the tooltip addition. Re-targeting can mark earlier review comments outdated, so re-read the diff.
+3. Mark the top PR ready, let required checks re-run against the new base, obtain any required approval, then merge it.
+4. Alternatively, merge the whole stack in one action by merging the top PR: every PR below it merges with it. Or run `gh stack merge`.
+5. Delete the two training branches only after both PRs are merged and neither is the base of an open PR.
+
+**Merge methods:** stacks support merge commit, squash, and rebase, and they are merge-queue aware. The resulting history matches merging each PR individually from the bottom up, so the repository does not need to allow merge commits specifically. If you merge through the API, use the asynchronous merge endpoint for stacks.
 
 ### Completion checks
 
-1. Copilot created two linked PRs, with actual URLs and the verified base/head pairs shown in the sample table before merging.
-2. PR 1 works independently; PR 2 includes PR 1's code but shows only its own change for review.
-3. Grid and List views retain working Like/Unlike behavior, with updated native tooltips on PR 2.
-4. Lint/build results and manual checks are recorded in each PR; any pre-existing failures are distinguished from new failures.
-5. You can explain why PR 2 initially targets PR 1's branch and why PR 1 must merge first.
+1. Copilot created two PRs that share one non-null stack, evidenced by the actual PR URLs, the stack number, and `gh stack view` output.
+2. The stack UI is visible on github.com: stack icon, layer indicator, and stack map.
+3. The bottom PR works independently; the top PR includes the bottom PR's code but shows only its own change for review.
+4. Grid and List views retain working Like/Unlike behavior, with updated native tooltips on the top PR.
+5. Lint/build results and manual checks are recorded in each PR; any pre-existing failures are distinguished from new failures.
+6. You can explain the difference between chaining base branches and creating a stack, and why `stack: null` means the exercise failed.
 
-**Verification boundary:** The official references establish the Agent and PR operations used here; they do not guarantee a particular model's output. An end-to-end exercise pass requires the two real PRs, branch/diff evidence, and application checks above. Reviewing this guide or checking CLI syntax alone does not establish that pass.
+**Verification boundary:** The official references establish the Agent and stack operations used here; they do not guarantee a particular model's output. An end-to-end exercise pass requires the two real PRs, a non-null shared stack object, branch/diff evidence, and the application checks above. Reviewing this guide or checking CLI syntax alone does not establish that pass. Stacked pull requests are in public preview, so re-check the CLI reference if a command behaves differently.
 
 ## Anti-Patterns to Avoid
 
