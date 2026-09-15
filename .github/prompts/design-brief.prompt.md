@@ -69,7 +69,7 @@ The smallest shippable slice first, then what follows it.
 
 ## Worked example
 
-The [Custom Agent exercise](../../demos/custom-agent-option-2.md) uses this feature request, which is a useful first run
+The [Custom Agent exercise](../../demos/custom-agent.md) uses this feature request, which is a useful first run
 because it deliberately names a surface that does not exist yet:
 
 ```text

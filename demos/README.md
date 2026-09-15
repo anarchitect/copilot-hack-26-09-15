@@ -5,7 +5,7 @@ This folder contains step-by-step demo guides for learning and practicing GitHub
 ## Before you start
 
 - **Work from your own repository.** This project is commonly used as a fork. Where a guide refers to the Agents tab, Pull requests, or Issues, navigate from your own repo rather than following a link to another org. Run `gh repo view --json nameWithOwner,url` to confirm which repo you are on.
-- **Issues must be enabled.** Three steps create or open GitHub issues: the MCP exercise in [customize-copilot.md](customize-copilot.md), Step 1 of [cloud-agent.md](cloud-agent.md), and the `/create-issue` step in [cloud-agent-option-2.md](cloud-agent-option-2.md). Forks have Issues disabled by default. Check with `gh repo view --json hasIssuesEnabled`; if it returns `false`, enable it under Settings -> General -> Features -> Issues, or skip those three steps.
+- **Issues must be enabled.** Three steps create or open GitHub issues: the MCP exercise in [customize-copilot-classic.md](customize-copilot-classic.md), Step 1 of [cloud-agent-classic.md](cloud-agent-classic.md), and the `/create-issue` step in [cloud-agent.md](cloud-agent.md). Forks have Issues disabled by default. Check with `gh repo view --json hasIssuesEnabled`; if it returns `false`, enable it under Settings -> General -> Features -> Issues, or skip those three steps.
 - **Exception:** [copilot-spaces.md](copilot-spaces.md) deliberately links to issues in the upstream `ps-copilot-sandbox` repository. Those are read-only reference sources for a Copilot Space and are meant to stay as they are.
 
 ## Current UI landmarks
@@ -27,7 +27,7 @@ This folder contains step-by-step demo guides for learning and practicing GitHub
 
 Hooks, Cloud Agent, and Stacked Pull Requests are optional extensions, not part of the recommended sequence. Allow extra time for any optional exercises, discussion, transitions, and breaks.
 
-### 1. Features Demo ([features-demo-option-2.md](features-demo-option-2.md))
+### 1. Features Demo ([features-demo.md](features-demo.md))
 **Overview:**  
 Start here with the recommended features challenge. Improve gallery modal behavior while trying Copilot, Copilot Chat, or the Copilot App.  
 **Key Skills:**  
@@ -38,7 +38,7 @@ Start here with the recommended features challenge. Improve gallery modal behavi
 
 ---
 
-### 2. Engineering Practices Demo ([engineering-practices-option-2.md](engineering-practices-option-2.md))
+### 2. Engineering Practices Demo ([engineering-practices.md](engineering-practices.md))
 **Overview:**  
 Practice context engineering as a repeatable system. Compare vague, overloaded, focused, and phase-separated approaches for the same upload tag autocomplete task.  
 **Key Skills:**  
@@ -49,15 +49,15 @@ Practice context engineering as a repeatable system. Compare vague, overloaded, 
 
 ---
 
-<a id="3-customize-copilot-demo-option-2"></a>
+<a id="3-customize-copilot-demo"></a>
 
 ### 3. Customize Copilot Demo
 **Overview:**  
 Choose a standalone exercise or complete the three-exercise recommended customization sequence. Each exercise has its own Markdown file and retains the original prompts and references, with its own prerequisites and completion checks. No exercise requires output from another.
 
-1. [Custom Instructions](custom-instructions-option-2.md) — compare instruction-driven UploadZone plans.
-2. [Custom Agent](custom-agent-option-2.md) — compare Blueprint Mode with default Agent mode.
-3. [Custom Skill](custom-skill-option-2.md) — generate a test plan and scaffolding with the Jest skill.
+1. [Custom Instructions](custom-instructions.md) — compare instruction-driven UploadZone plans.
+2. [Custom Agent](custom-agent.md) — compare Blueprint Mode with default Agent mode.
+3. [Custom Skill](custom-skill.md) — generate a test plan and scaffolding with the Jest skill.
 
 **Key Skills:**  
 - Compare instruction-driven outputs
@@ -68,7 +68,7 @@ Choose a standalone exercise or complete the three-exercise recommended customiz
 
 ## Optional Demo Sequence & Descriptions
 
-### 1. Hooks ([hooks-option-2.md](hooks-option-2.md))
+### 1. Hooks ([hooks.md](hooks.md))
 **Overview:**
 Identify an intentional broken link with the Fix Broken Links hook.
 **Key Skills:**
@@ -87,7 +87,7 @@ Ask Copilot in VS Code Agent mode to create a two-PR stack: extract the shared p
 
 ---
 
-### 3. Cloud Agent Demo ([cloud-agent-option-2.md](cloud-agent-option-2.md))
+### 3. Cloud Agent Demo ([cloud-agent.md](cloud-agent.md))
 **Time allocation:** 15 minutes hands-on; 30-45 minutes elapsed.
 
 **Overview:**  
@@ -100,7 +100,7 @@ Use Copilot in GitHub to generate a standup report, create a feature issue, and 
 
 ---
 
-### 4. Features Demo ([features-demo.md](features-demo.md))
+### 4. Features Demo ([features-demo-classic.md](features-demo-classic.md))
 **Overview:**  
 Start here to explore Copilot’s core features. Learn how to use chat commands, generate code, and review AI suggestions.  
 **Key Skills:**  
@@ -112,7 +112,7 @@ Start here to explore Copilot’s core features. Learn how to use chat commands,
 
 ---
 
-### 5. Engineering Practices Demo ([engineering-practices.md](engineering-practices.md))
+### 5. Engineering Practices Demo ([engineering-practices-classic.md](engineering-practices-classic.md))
 **Overview:**  
 Dive deeper into professional Copilot tools for teams. Inspect Copilot interactions, export and import agent debug sessions, and explore system prompts for consistent code generation.
 **Key Skills:**  
@@ -123,7 +123,7 @@ Dive deeper into professional Copilot tools for teams. Inspect Copilot interacti
 
 ---
 
-### 6. Customize Copilot Demo ([customize-copilot.md](customize-copilot.md))
+### 6. Customize Copilot Demo ([customize-copilot-classic.md](customize-copilot-classic.md))
 **Overview:**  
 Learn advanced customization techniques. Monitor AI credit usage, switch models, use prompt files, experiment with custom agent modes, and set up custom instructions for your team.
 **Key Skills:**  
@@ -145,7 +145,7 @@ Collaborate in dedicated Copilot Spaces. Create a Space, set goals, add context 
 
 ---
 
-### 8. Cloud Agent Demo (original guide) ([cloud-agent.md](cloud-agent.md))
+### 8. Cloud Agent Demo (original guide) ([cloud-agent-classic.md](cloud-agent-classic.md))
 **Overview:**  
 Experience GitHub Copilot as a cloud agent to accelerate building and enhancing features in your Photo Gallery & Portfolio application.  
 **Key Skills:**  

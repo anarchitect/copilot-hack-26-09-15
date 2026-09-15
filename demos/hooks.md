@@ -18,11 +18,11 @@ This exercise runs independently in a terminal; no output from the Copilot Chat 
 
 1. View and review the Fix Broken Links hook in `.github/hooks/fix-broken-links/`.
 2. Run the command for your shell from the repository root:
-   - **Bash:** `chmod +x .github/hooks/fix-broken-links/link-fix.sh && bash .github/hooks/fix-broken-links/link-fix.sh ./demos/hooks-option-2.md`
-   - **PowerShell:** `pwsh -File .github/hooks/fix-broken-links/link-fix.ps1 .\demos\hooks-option-2.md`
+   - **Bash:** `chmod +x .github/hooks/fix-broken-links/link-fix.sh && bash .github/hooks/fix-broken-links/link-fix.sh ./demos/hooks.md`
+   - **PowerShell:** `pwsh -File .github/hooks/fix-broken-links/link-fix.ps1 .\demos\hooks.md`
 3. Confirm the report identifies the planted broken link below as `BROKEN (404)`.
    - A transient `ERR` for another URL means the checker could not reach it; retry before treating it as broken.
-4. Choose `s` to skip the intentional finding so the exercise remains repeatable. If you remove or replace it, restore this file with `git restore demos/hooks-option-2.md`.
+4. Choose `s` to skip the intentional finding so the exercise remains repeatable. If you remove or replace it, restore this file with `git restore demos/hooks.md`.
 
 **Broken Link**
 <!-- INTENTIONAL 404: keep this link broken so both hook implementations have a deterministic demo finding. -->

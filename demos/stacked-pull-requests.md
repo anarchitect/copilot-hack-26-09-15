@@ -1,6 +1,6 @@
 # Stacked Pull Requests
 
-**Optional exercise.** Follows [Hooks](hooks-option-2.md); no output from the Hooks exercise is required.
+**Optional exercise.** Follows [Hooks](hooks.md); no output from the Hooks exercise is required.
 
 A **stack** is a chain of pull requests in the same repository where the bottom PR targets a trunk branch (usually `main`) and each PR above it targets the branch of the PR below. This lets you review a small foundation change separately from the change that uses it, without waiting for the first PR to merge.
 
@@ -72,6 +72,8 @@ Report the PR URL and the output of gh stack view. Don't start layer two.
 
 Notes on that prompt: `gh stack init` takes the branch name and uses your default branch as the trunk. The lint/build line matters because the extraction leaves `Heart` and `Download` referenced in `GalleryGrid` but removed from its import — lint catches it, and the agent should fix it before publishing.
 
+`gh stack view` will draw your one branch above the trunk, but GitHub does not create the stack object until a second PR joins it. Querying the `stack` field now returns `null`, and that is expected — Step 3 is where it must be non-null.
+
 1. Approve the tool calls and open the PR URL Copilot returns. A command proposed in chat is not a created PR.
 2. Check **Files changed** shows only the extraction. Run `npm run dev` and confirm `/gallery` still likes, unlikes and opens details in both Grid and List views.
 3. Leave the PR open and unmerged.
@@ -107,7 +109,9 @@ Report both PR URLs and the output of gh stack view. Don't merge anything.
 
 The `git diff A...HEAD` check is the one worth keeping. Three dots compares against the merge base, so it shows what this layer adds on top of the layer below — if the extraction shows up there, the branch came off the wrong parent.
 
-Approve the tool calls. In `/gallery`, hover the Like button in both layouts, toggle it, move away and hover again to confirm the tooltip text follows the state. Check the like count and pressed state still update.
+Approve the tool calls. When `gh stack submit` runs this time it reports `Stack created on GitHub with 2 PRs (stack #N)` — that line is the stack object being created, and it only appears once a second PR joins.
+
+In `/gallery`, hover the Like button in both layouts, toggle it, move away and hover again to confirm the tooltip text follows the state. Check the like count and pressed state still update.
 
 ## Step 3: Prove that Copilot created a real stack
 

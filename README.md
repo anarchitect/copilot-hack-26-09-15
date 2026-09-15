@@ -6,28 +6,28 @@ A professional photo gallery and portfolio application built with Next.js 15, Ty
 
 - All demo guides and examples are in the [`demos/`](demos/) folder.
 - For more information about each demo, refer to the [README](demos/README.md) file in the `demos/` directory.
-- To get started, check out the recommended first demo [`features-demo-option-2.md`](demos/features-demo-option-2.md) for a walkthrough of gallery features and Copilot capabilities.
+- To get started, check out the recommended first demo [`features-demo.md`](demos/features-demo.md) for a walkthrough of gallery features and Copilot capabilities.
 
 ### Demo Tracks
 
 Recommended guides:
 
-1. [Features Demo](demos/features-demo-option-2.md)
-2. [Engineering Practices Demo](demos/engineering-practices-option-2.md)
-3. [Custom Instructions](demos/custom-instructions-option-2.md)
-4. [Custom Agent](demos/custom-agent-option-2.md)
-5. [Custom Skill](demos/custom-skill-option-2.md)
+1. [Features Demo](demos/features-demo.md)
+2. [Engineering Practices Demo](demos/engineering-practices.md)
+3. [Custom Instructions](demos/custom-instructions.md)
+4. [Custom Agent](demos/custom-agent.md)
+5. [Custom Skill](demos/custom-skill.md)
 
 Optional guides:
 
-- [Hooks](demos/hooks-option-2.md)
+- [Hooks](demos/hooks.md)
 - [Stacked Pull Requests exercise](demos/stacked-pull-requests.md)
-- [Cloud Agent Demo](demos/cloud-agent-option-2.md)
-- [Features Demo](demos/features-demo.md)
-- [Engineering Practices Demo](demos/engineering-practices.md)
-- [Customize Copilot Demo](demos/customize-copilot.md)
+- [Cloud Agent Demo](demos/cloud-agent.md)
+- [Features Demo](demos/features-demo-classic.md)
+- [Engineering Practices Demo](demos/engineering-practices-classic.md)
+- [Customize Copilot Demo](demos/customize-copilot-classic.md)
 - [Copilot Spaces Demo](demos/copilot-spaces.md)
-- [Cloud Agent Demo (original guide)](demos/cloud-agent.md)
+- [Cloud Agent Demo (original guide)](demos/cloud-agent-classic.md)
 
 ### Current Application Routes
 

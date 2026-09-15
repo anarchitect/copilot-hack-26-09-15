@@ -1,4 +1,4 @@
-// Step-by-step guidance for the four "Option 2" demo challenges.
+// Step-by-step guidance for the four recommended demo challenges.
 //
 // Each guide maps to a file in /demos. Steps are intentionally concrete:
 // the exact file, the exact line region, the exact prompt, and a check that
@@ -30,7 +30,7 @@ export const GUIDES = [
     {
         id: "features",
         title: "Features Demo",
-        source: "demos/features-demo-option-2.md",
+        source: "demos/features-demo.md",
         estimate: "20-30 min",
         goal:
             "Use Copilot Chat (Plan mode, Agent mode, model picker) to add three modal UX behaviours to GalleryGrid.tsx, then review the diff with Copilot's AI review.",
@@ -173,7 +173,7 @@ export const GUIDES = [
     {
         id: "engineering",
         title: "Engineering Practices Demo",
-        source: "demos/engineering-practices-option-2.md",
+        source: "demos/engineering-practices.md",
         estimate: "30-40 min (+15 min bonus)",
         goal:
             "Run the same small task four ways - two bad-habit runs and two recommended runs - and compare turns, credits and diff size. The task itself is a side effect; the comparison is the point.",
@@ -253,7 +253,7 @@ export const GUIDES = [
                         id: "eng-bad2",
                         title: "Bad habit 2 - context dump in the same chat",
                         body:
-                            "Stay in the **same** chat. Attach the target file plus loosely related extras: `src/app/upload/page.tsx`, `src/app/gallery/page.tsx`, `src/components/gallery/GalleryGrid.tsx`, and `demos/features-demo.md`. Keep the requirements broad.",
+                            "Stay in the **same** chat. Attach the target file plus loosely related extras: `src/app/upload/page.tsx`, `src/app/gallery/page.tsx`, `src/components/gallery/GalleryGrid.tsx`, and `demos/features-demo-classic.md`. Keep the requirements broad.",
                         prompt:
                             "Improve the upload tag autocomplete behavior.\n\nRequirements:\n- Show suggestions as users type in tags.\n- Include matching tags like wedding and wildlife for \"w\".\n- Keep the page working.\n\nUse the attached files for context.",
                         check:
@@ -507,7 +507,7 @@ export const GUIDES = [
                         body:
                             "You are on Windows, so use the PowerShell script (PowerShell 7+). The `chmod +x` step and the `.sh` variant in the demo doc apply to macOS/Linux shells only - on Windows there is nothing to make executable.",
                         commands: [
-                            "pwsh -File .github/hooks/fix-broken-links/link-fix.ps1 ./demos/hooks-option-2.md",
+                            "pwsh -File .github/hooks/fix-broken-links/link-fix.ps1 ./demos/hooks.md",
                         ],
                         check:
                             "Expected output: it flags `BROKEN (404) https://github.com/github/awesome-copilot/this-page-does-not-exist-404` and adds an SEO note about the non-descriptive anchor text `read more`. A transient `ERR` for another URL is a connectivity failure; retry it before calling that link broken.",
@@ -519,7 +519,7 @@ export const GUIDES = [
                         title: "Know what the interactive prompt will do before you answer it",
                         body:
                             "Passing a file path puts the script in fix mode, not report mode. In a real terminal it will offer `r` replace / `d` remove link, keep text / `c` custom URL / `s` skip. Two things to expect: building the `r` suggestions shells out to the `copilot` CLI with a **60 second timeout per broken link**, so it can sit there looking hung; and `r`, `d` or `c` **rewrite the markdown file in place**. Only `s` leaves the file untouched. (Piping the script's output, as in a non-interactive shell, makes it print `(no terminal - reporting only)` and change nothing.)",
-                        check: "You can predict, before pressing a key, whether your choice edits `demos/hooks-option-2.md`.",
+                        check: "You can predict, before pressing a key, whether your choice edits `demos/hooks.md`.",
                         why: "A link-fixing hook run unattended will happily rewrite a link that was deliberately broken for the demo.",
                     },
                     {
@@ -527,7 +527,7 @@ export const GUIDES = [
                         title: "Decide per finding, then restore the demo doc",
                         body:
                             "Choose remove, replace or skip for each broken link. For this demo `s` (skip) is the honest answer - the link is meant to stay broken for the next person. If you did let it rewrite the file, restore it.",
-                        commands: ["git diff --stat demos/hooks-option-2.md", "git checkout -- demos/hooks-option-2.md"],
+                        commands: ["git diff --stat demos/hooks.md", "git checkout -- demos/hooks.md"],
                         check: "`git diff` on the demo doc is empty, so the challenge still works for the next run.",
                         why: "An explicit decision per link beats accepting a bulk rewrite - and leaving the planted 404 intact keeps the exercise repeatable.",
                     },
@@ -539,7 +539,7 @@ export const GUIDES = [
     {
         id: "cloud-agent",
         title: "Cloud Agent Demo",
-        source: "demos/cloud-agent-option-2.md",
+        source: "demos/cloud-agent.md",
         estimate: "15 min hands-on; 30-45 min elapsed",
         goal:
             "Drive Copilot from github.com instead of the editor: generate a standup report, file an issue with a slash command, assign it to an agent, and review the resulting PR and session.",
