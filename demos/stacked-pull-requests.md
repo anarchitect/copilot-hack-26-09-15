@@ -55,7 +55,7 @@ Build the bottom layer of a two-PR stack here. Execute the work, don't
 just propose commands. Stop and tell me if any step fails.
 
 Create the branch with: gh stack init stack/photo-actions
-Don't use gh pr create --base -- it doesn't create a stack object.
+Use gh stack throughout; gh pr create --base does not make a stack.
 
 Extract PhotoActions and its props from GalleryGrid.tsx into
 src/components/gallery/PhotoActions.tsx and import it back. Leave the
@@ -64,13 +64,16 @@ lucide-react icons GalleryGrid still uses in its own import. No tooltips yet.
 Run npm run lint and npm run build, then commit.
 
 Publish with: gh stack submit --auto
-(--auto creates a draft and generates the title; there is no --draft flag.)
 Then set a real title and body with gh pr edit.
 
 Report the PR URL and the output of gh stack view. Don't start layer two.
 ```
 
-Notes on that prompt: `gh stack init` takes the branch name and uses your default branch as the trunk. The lint/build line matters because the extraction leaves `Heart` and `Download` referenced in `GalleryGrid` but removed from its import — lint catches it, and the agent should fix it before publishing.
+Why the prompt says what it says:
+
+- **`gh stack init`, not `gh pr create --base`.** Only the stack commands create the stack object. The extension takes the branch name and uses your default branch as the trunk.
+- **The lint and build line.** The extraction leaves `Heart` and `Download` referenced in `GalleryGrid` but removed from its import. Lint catches it; the agent should fix it before publishing.
+- **`--auto`.** It creates the PR as a draft and generates the title, which is why the title and body are set afterwards with `gh pr edit`. There is no `--draft` flag.
 
 `gh stack view` will draw your one branch above the trunk, but GitHub does not create the stack object until a second PR joins it. Querying the `stack` field now returns `null`, and that is expected — Step 3 is where it must be non-null.
 
@@ -88,8 +91,6 @@ commands. Stop and tell me if any step fails.
 
 Confirm gh stack view shows the existing stack, then create the branch with:
 gh stack add stack/like-tooltips
-That branches from the layer below, not from main. Don't use git checkout -b
-or gh pr create --base.
 
 In PhotoActions.tsx, give the Like button a native title tooltip matching its
 existing aria-label: "Like <photo title>" unliked, "Unlike <photo title>"
@@ -107,7 +108,10 @@ gh pr edit, noting this depends on the layer below and merges bottom-up.
 Report both PR URLs and the output of gh stack view. Don't merge anything.
 ```
 
-The `git diff A...HEAD` check is the one worth keeping. Three dots compares against the merge base, so it shows what this layer adds on top of the layer below — if the extraction shows up there, the branch came off the wrong parent.
+Why the prompt says what it says:
+
+- **`gh stack add`, not `git checkout -b`.** It branches from the layer below rather than from `main`, and records the new layer in the stack.
+- **The three-dot diff.** `git diff A...HEAD` compares against the merge base, so it shows what this layer adds on top of the layer below. If the extraction turns up there, the branch came off the wrong parent.
 
 Approve the tool calls. When `gh stack submit` runs this time it reports `Stack created on GitHub with 2 PRs (stack #N)` — that line is the stack object being created, and it only appears once a second PR joins.
 
@@ -136,10 +140,10 @@ gh pr diff stack/like-tooltips --repo OWNER/REPO
 | # | Check | Expected |
 | --- | --- | --- |
 | 1 | Bottom PR | base `main`, head `stack/photo-actions`, `OPEN`, `mergedAt: null` |
-| 2 | Top PR | base `stack/photo-actions`, head `stack/like-tooltips`, `OPEN`, `mergedAt: null` — **both bases `main` is a failure** |
+| 2 | Top PR | base `stack/photo-actions`, head `stack/like-tooltips`, `OPEN`, `mergedAt: null`. If the top PR's base is also `main`, the layers were never chained — a failure |
 | 3 | `gh stack view` | Both branches in one stack above the trunk. `not part of a stack` is a failure even if checks 1–2 pass |
 | 4 | GraphQL `stack` | The **same non-null** object on both PRs, `size: 2`. **`null` on either PR is a failure** |
-| 5 | github.com | Stack icon with a `2/2` layer indicator, stack map in the merge box, timeline entry `added this pull request to stack #N` |
+| 5 | github.com | Stack icon by the title with a layer badge in `position/total` form — `2/2` on the top PR of a two-layer stack — plus a stack map in the merge box and a timeline entry `added this pull request to stack #N` |
 | 6 | Top PR diff | Only the tooltip line in `PhotoActions.tsx` |
 
 Check 4 is the one that separates a stack from a lookalike. If it fails, the base branches were chained by hand. Repair it without recreating the PRs:
@@ -152,7 +156,7 @@ Then re-run checks 3 to 5.
 
 Optionally confirm ancestry with `git merge-base --is-ancestor origin/stack/photo-actions origin/stack/like-tooltips`; exit code `0` is expected. It complements the stack-object check and does not replace it.
 
-If review changes the bottom layer, run `gh stack sync` then `gh stack rebase` to cascade the update upward. Never merge one exercise branch into the other by hand.
+If review changes the bottom layer, run `gh stack sync`. It fetches, cascade-rebases each layer onto its updated parent, and pushes — one command, not two. If it reports a rebase conflict it restores every branch and leaves you to run `gh stack rebase` and resolve interactively. Never merge one exercise branch into the other by hand.
 
 ## Step 4: Merge bottom-up (optional)
 
@@ -164,7 +168,7 @@ Stacks merge from the bottom, and GitHub retargets the layers above for you.
 4. Or merge the whole stack at once by merging the top PR — everything below comes with it. `gh stack merge` does the same from the CLI.
 5. Delete the training branches once both PRs are merged and neither is the base of an open PR.
 
-**Merge methods:** stacks support merge commit, squash and rebase, and are merge-queue aware. The resulting history matches merging each PR individually from the bottom, so the repository does not need to allow merge commits specifically. Merging through the API requires the asynchronous merge endpoint for stacks.
+**Merge methods:** stacks support merge commit, squash and rebase, and are merge-queue aware. The resulting history matches merging each PR individually from the bottom. Which methods you can actually pick still depends on your repository's merge settings. Merging through the API requires the asynchronous merge endpoint for stacks.
 
 ## Completion checks
 
