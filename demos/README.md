@@ -77,7 +77,17 @@ Identify an intentional broken link with the Fix Broken Links hook.
 
 ---
 
-### 2. Cloud Agent Demo ([cloud-agent-option-2.md](cloud-agent-option-2.md))
+### 2. Stacked Pull Requests ([exercise](engineering-practices-option-2.md#optional-exercise-stacked-pull-requests))
+**Overview:**
+Practice a simple two-PR stack: extract the shared photo actions, then add Like/Unlike tooltips in a dependent PR. This standalone exercise uses local Copilot Chat, Git, and GitHub; no stacking tool is required.
+**Key Skills:**
+1. Split a refactor and a small feature into focused PRs.
+2. Choose the correct base branch and link dependencies.
+3. Review incremental diffs and merge in dependency order.
+
+---
+
+### 3. Cloud Agent Demo ([cloud-agent-option-2.md](cloud-agent-option-2.md))
 **Time allocation:** 15 minutes hands-on; 30-45 minutes elapsed.
 
 **Overview:**  
@@ -90,7 +100,7 @@ Use Copilot in GitHub to generate a standup report, create a feature issue, and 
 
 ---
 
-### 3. Features Demo ([features-demo.md](features-demo.md))
+### 4. Features Demo ([features-demo.md](features-demo.md))
 **Overview:**  
 Start here to explore Copilot’s core features. Learn how to use chat commands, generate code, and review AI suggestions.  
 **Key Skills:**  
@@ -102,7 +112,7 @@ Start here to explore Copilot’s core features. Learn how to use chat commands,
 
 ---
 
-### 4. Engineering Practices Demo ([engineering-practices.md](engineering-practices.md))
+### 5. Engineering Practices Demo ([engineering-practices.md](engineering-practices.md))
 **Overview:**  
 Dive deeper into professional Copilot tools for teams. Inspect Copilot interactions, export and import agent debug sessions, and explore system prompts for consistent code generation.
 **Key Skills:**  
@@ -113,7 +123,7 @@ Dive deeper into professional Copilot tools for teams. Inspect Copilot interacti
 
 ---
 
-### 5. Customize Copilot Demo ([customize-copilot.md](customize-copilot.md))
+### 6. Customize Copilot Demo ([customize-copilot.md](customize-copilot.md))
 **Overview:**  
 Learn advanced customization techniques. Monitor AI credit usage, switch models, use prompt files, experiment with custom agent modes, and set up custom instructions for your team.
 **Key Skills:**  
@@ -124,7 +134,7 @@ Learn advanced customization techniques. Monitor AI credit usage, switch models,
 
 ---
 
-### 6. Copilot Spaces Demo ([copilot-spaces.md](copilot-spaces.md))
+### 7. Copilot Spaces Demo ([copilot-spaces.md](copilot-spaces.md))
 **Overview:**  
 Collaborate in dedicated Copilot Spaces. Create a Space, set goals, add context files, and work together to implement new features with AI assistance.  
 **Key Skills:**  
@@ -135,23 +145,13 @@ Collaborate in dedicated Copilot Spaces. Create a Space, set goals, add context 
 
 ---
 
-### 7. Cloud Agent Demo (original guide) ([cloud-agent.md](cloud-agent.md))
+### 8. Cloud Agent Demo (original guide) ([cloud-agent.md](cloud-agent.md))
 **Overview:**  
 Experience GitHub Copilot as a cloud agent to accelerate building and enhancing features in your Photo Gallery & Portfolio application.  
 **Key Skills:**  
 - Assign Copilot to GitHub issues  
 - Review Copilot-generated pull requests and session details  
 - Practice collaborative code review and iteration  
-
----
-
-### 8. Stacked Pull Requests ([exercise](engineering-practices-option-2.md#optional-exercise-stacked-pull-requests))
-**Overview:**
-Practice a simple two-PR stack: extract the shared photo actions, then add Like/Unlike tooltips in a dependent PR. This standalone exercise uses local Copilot Chat, Git, and GitHub; no stacking tool is required.
-**Key Skills:**
-1. Split a refactor and a small feature into focused PRs.
-2. Choose the correct base branch and link dependencies.
-3. Review incremental diffs and merge in dependency order.
 
 ---
 

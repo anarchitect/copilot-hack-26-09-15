@@ -21,13 +21,13 @@ Recommended guides:
 Optional guides:
 
 - [Hooks](demos/hooks-option-2.md)
+- [Stacked Pull Requests exercise](demos/engineering-practices-option-2.md#optional-exercise-stacked-pull-requests)
 - [Cloud Agent Demo](demos/cloud-agent-option-2.md)
 - [Features Demo](demos/features-demo.md)
 - [Engineering Practices Demo](demos/engineering-practices.md)
 - [Customize Copilot Demo](demos/customize-copilot.md)
 - [Copilot Spaces Demo](demos/copilot-spaces.md)
 - [Cloud Agent Demo (original guide)](demos/cloud-agent.md)
-- [Stacked Pull Requests exercise](demos/engineering-practices-option-2.md#optional-exercise-stacked-pull-requests)
 
 ### Current Application Routes
 
